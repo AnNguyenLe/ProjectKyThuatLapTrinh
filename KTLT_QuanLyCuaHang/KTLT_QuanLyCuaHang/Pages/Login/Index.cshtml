@@ -1,0 +1,145 @@
+﻿@page
+@using Microsoft.AspNetCore.Http
+@using KTLT_QuanLyCuaHang.Entities
+@using KTLT_QuanLyCuaHang.BusinessLogic_BLL
+@model KTLT_QuanLyCuaHang.Pages.Login.IndexModel
+@{
+    ViewData["Title"] = "Login";
+
+    string infoTextError = string.Empty;
+    string infoTextApproved = string.Empty;
+
+    string email, password;
+
+    if(Request.Method == "POST")
+    {
+        email = Request.Form["userEmail"];
+        password = Request.Form["userPassword"];
+
+        User loginUser = new User();
+        loginUser.email = email;
+        loginUser.password = password;
+
+        User? matchedLoginUser = Login_BLL.LoginUser(loginUser);
+
+        if(matchedLoginUser == null)
+        {
+            infoTextError = "Something wrong with the account you login. Check the Email and Password again.";
+        }
+
+        if(matchedLoginUser != null)
+        {
+            infoTextApproved = "Access Granted!";
+
+            HttpContext.Session.SetString("userEmail", matchedLoginUser.Value.email);
+            HttpContext.Session.SetString("userName", matchedLoginUser.Value.name);
+
+            Response.Redirect("/");
+        }
+    }
+}
+
+
+<div class="bodyFrame">
+     <div class="page-header">
+        <h2>LOGIN</h2>
+    </div>
+    <form method="post">
+        <div class="inputField">
+            <label for="userEmail">Email</label>
+            <input type="email" name="userEmail" />
+        </div>
+
+        <div class="inputField">
+            <label for="userPassword">Password</label>
+            <input type="password" name="userPassword" />
+        </div>
+
+         @if (!string.IsNullOrEmpty(infoTextError))
+        {
+            <p class="info-text-error">@infoTextError</p>
+        }
+       
+        @if (!string.IsNullOrEmpty(infoTextApproved))
+        {
+            <p class="info-text-approved">@infoTextApproved</p>
+        }
+
+        <input class="submit-button" type="submit" value="Login">
+    </form>
+</div>
+
+@section Styling{
+    <style>
+        .bodyFrame {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 82vh;
+        }
+
+        .page-header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 55%;
+        }
+
+        .inputField {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .inputField > input {
+                width: 60%;
+            }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            border-radius: 8px;
+        }
+
+            input:focus {
+                background-color: azure
+            }
+
+        .info-text-error {
+            background-color: red;
+            color: white;
+        }
+
+        .info-text-approved {
+            background-color: forestgreen;
+            color: white;
+        }
+
+        .submit-button {
+            width: 100%;
+            color: white;
+            background-color: deepskyblue;
+            font-weight: bold;
+            font-size: medium;
+            height: 40px;
+            margin-top: 30px;
+        }
+
+            .submit-button:hover {
+                background-color: blue;
+            }
+    </style>
+}

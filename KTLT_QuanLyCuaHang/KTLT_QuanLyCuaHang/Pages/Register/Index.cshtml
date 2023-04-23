@@ -1,0 +1,148 @@
+﻿@page
+@using KTLT_QuanLyCuaHang.Entities
+@using KTLT_QuanLyCuaHang.BusinessLogic_BLL
+@using KTLT_QuanLyCuaHang.Constants
+@model KTLT_QuanLyCuaHang.Pages.Register.IndexModel
+@{
+    ViewData["Title"] = "Register";
+
+    string infoTextError = string.Empty;
+    string infoTextApproved = string.Empty;
+
+    string email, userName, password;
+
+    if (Request.Method == "POST")
+    {
+        email = Request.Form["userEmail"];
+        userName = Request.Form["userName"];
+        password = Request.Form["userPassword"];
+
+        User newUser = new User();
+        newUser.email = email;
+        newUser.name = userName;
+        newUser.password = password;
+
+        string status = Register_BLL.RegisterNewUser(newUser);
+
+        if (status == ProcessStatusConstants.REJECTED)
+        {
+            infoTextError = "Email, Password, and User Name are required. Or this email has been already registered.";
+        }
+
+        if (status == ProcessStatusConstants.APPROVED)
+        {
+            infoTextApproved = "Congrats! Approved.";
+            Response.Redirect("/Login");
+        }
+    }
+}
+
+<div class="bodyFrame">
+    <div class="page-header">
+        <h2>REGISTER</h2>
+        <p>New here? Register an account to use this product.</p>
+    </div>
+    <form method="post">
+        <div class="inputField">
+            <label for="userEmail">Email</label>
+            <input type="email" name="userEmail" />
+        </div>
+
+        <div class="inputField">
+            <label for="userName">User Name</label>
+            <input type="text" name="userName" />
+        </div>
+
+        <div class="inputField">
+            <label for="userPassword">Create a Password</label>
+            <input type="password" name="userPassword" />
+        </div>
+
+        @if (!string.IsNullOrEmpty(infoTextError))
+        {
+            <p class="info-text-error">@infoTextError</p>
+        }
+       
+        @if (!string.IsNullOrEmpty(infoTextApproved))
+        {
+            <p class="info-text-approved">@infoTextApproved</p>
+        }
+
+        <input class="submit-button" type="submit" value="Register">
+    </form>
+</div>
+
+@section Styling{
+    <style>
+        .bodyFrame {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 82vh;
+        }
+
+        .page-header{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .info-text-error {
+            background-color: red;
+            color: white;
+        }
+
+        .info-text-approved {
+            background-color: forestgreen;
+            color: white;
+        }
+
+        form {
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 55%;
+        }
+
+        .inputField {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .inputField > input {
+                width: 60%;
+            }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            border-radius: 8px;
+        }
+
+            input:focus {
+                background-color: azure
+            }
+
+        .submit-button {
+            width: 100%;
+            color: white;
+            background-color: deepskyblue;
+            font-weight: bold;
+            font-size: medium;
+            height: 40px;
+            margin-top: 30px;
+        }
+
+            .submit-button:hover {
+                background-color: blue;
+            }
+    </style>
+}

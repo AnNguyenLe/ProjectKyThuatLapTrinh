@@ -6,4 +6,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Entities\" />
+    <None Remove="Constants\" />
+    <None Remove="Pages\Register\" />
+    <None Remove="Pages\Login\" />
+    <None Remove="BusinessLogic_BLL\" />
+    <None Remove="DataAccess_DAL\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\Register\" />
+    <Folder Include="Pages\Login\" />
+  </ItemGroup>
 </Project>

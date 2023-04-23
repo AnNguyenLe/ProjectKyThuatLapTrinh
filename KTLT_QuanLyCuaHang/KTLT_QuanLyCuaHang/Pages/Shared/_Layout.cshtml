@@ -1,36 +1,151 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+
+@{
+    string userName = Context.Session.GetString("userName");
+    string userEmail = Context.Session.GetString("userEmail");
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - KTLT_QuanLyCuaHang</title>
+    <title>@ViewData["Title"] - QuanLyCuaHang</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/KTLT_QuanLyCuaHang.styles.css" asp-append-version="true" />
+    <style>
+        .navbar-brand-wrapper{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .navbar-brand-link-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 250px;
+            border-radius: 12px;
+            background-color: black;
+            margin-left: 50px;
+            margin-bottom: 4px;
+        }
+
+            .navbar-brand-link-wrapper > .navbar-brand {
+                color: whitesmoke;
+                margin: 0;
+            }
+
+        ul{
+            margin: auto;
+        }
+
+        .action-menu-parent-item{
+            padding: 0.5rem 1rem;
+        }
+        .nav-register-login, .action-menu-parent-item {
+            box-sizing: border-box;
+            border-bottom: 4px solid transparent;
+        }
+        .nav-register-login:first-of-type {
+            border-right: 1px grey solid;
+            
+        }
+
+            .nav-register-login:hover, .action-menu-parent-item:hover {
+            box-sizing: border-box;
+            border-bottom: 4px solid blue;
+        }
+
+        .login-status {
+            width: 20%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .register-login {
+            list-style-type: none;
+            display: inline-flex;
+            justify-content: space-between;
+        }
+
+        .action-menu-wrapper{
+            width: 60%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .action-menu{
+            width: 100%;
+            list-style-type: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navigation-bar{
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+            display: flex;
+            height: 65px;
+        }
+
+        
+
+    </style>
+    @await RenderSectionAsync("Styling", required: false)
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">KTLT_QuanLyCuaHang</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
+        <nav class="navigation-bar">
+            
+            <div class="navbar-brand-wrapper">
+                <div class="navbar-brand-link-wrapper">
+                    <a class="navbar-brand" asp-area="" asp-page="/Index">StoreManagement Inc.</a>
                 </div>
             </div>
+            
+
+            <div class="action-menu-wrapper">
+                <ul class="action-menu">
+                    <li class="action-menu-parent-item">Products</li>
+                    <li class="action-menu-parent-item">Categories</li>
+                    <li class="action-menu-parent-item">Sale Receipts</li>
+                    <li class="action-menu-parent-item">Purchase Invoice</li>
+                    <li class="action-menu-parent-item">Inventory</li>
+                    <li class="action-menu-parent-item">Expired Products</li>
+                </ul>
+            </div>
+
+            <div class="login-status">
+                <ul class="register-login">
+                    @if(string.IsNullOrEmpty(userEmail))
+                    {
+                        <li class="nav-register-login">
+                                <a class="nav-link text-dark" href="/register">Register</a>
+                        </li>
+                        <li class="nav-register-login">
+                            
+                                <a class="nav-link text-dark" href="/login">Login</a>
+                            
+                        </li>
+                    } else
+                    {
+                        <li class="nav-register-login">
+                            <span class="nav-link text-dark" title="@userEmail">Hi @userName</span>
+                        </li>
+                        <li class="nav-register-login">
+                            <a class="nav-link text-dark" href="/logout">Logout</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            
         </nav>
     </header>
+    
     <div class="container">
+        
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -38,7 +153,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - KTLT_QuanLyCuaHang - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2023 - KTLT_QuanLyCuaHang_22880007
         </div>
     </footer>
 

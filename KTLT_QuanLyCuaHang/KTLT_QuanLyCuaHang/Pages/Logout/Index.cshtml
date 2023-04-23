@@ -1,0 +1,8 @@
+﻿@page
+@using Microsoft.AspNetCore.Http
+@model KTLT_QuanLyCuaHang.Pages.Logout.IndexModel
+@{
+    HttpContext.Session.SetString("userEmail", "");
+    HttpContext.Session.SetString("userName", "");
+    Response.Redirect("/login");
+}
