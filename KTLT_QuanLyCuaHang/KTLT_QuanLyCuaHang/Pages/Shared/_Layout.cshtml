@@ -15,121 +15,90 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/KTLT_QuanLyCuaHang.styles.css" asp-append-version="true" />
     <style>
-        .navbar-brand-wrapper{
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .navbar-brand:hover {
+            color: whitesmoke;
         }
-        .navbar-brand-link-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 250px;
-            border-radius: 12px;
-            background-color: black;
-            margin-left: 50px;
-            margin-bottom: 4px;
-        }
-
-            .navbar-brand-link-wrapper > .navbar-brand {
-                color: whitesmoke;
-                margin: 0;
-            }
-
-        ul{
-            margin: auto;
-        }
-
-        .action-menu-parent-item{
-            padding: 0.5rem 1rem;
-        }
-        .nav-register-login, .action-menu-parent-item {
-            box-sizing: border-box;
-            border-bottom: 4px solid transparent;
-        }
-        .nav-register-login:first-of-type {
-            border-right: 1px grey solid;
-            
-        }
-
-            .nav-register-login:hover, .action-menu-parent-item:hover {
-            box-sizing: border-box;
-            border-bottom: 4px solid blue;
-        }
-
-        .login-status {
-            width: 20%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .register-login {
-            list-style-type: none;
-            display: inline-flex;
-            justify-content: space-between;
-        }
-
-        .action-menu-wrapper{
-            width: 60%;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-        }
-
-        .action-menu{
-            width: 100%;
-            list-style-type: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navigation-bar{
-            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-            display: flex;
-            height: 65px;
-        }
-
-        
-
     </style>
     @await RenderSectionAsync("Styling", required: false)
 </head>
 <body>
     <header>
         <nav class="navigation-bar">
-            
+
             <div class="navbar-brand-wrapper">
                 <div class="navbar-brand-link-wrapper">
                     <a class="navbar-brand" asp-area="" asp-page="/Index">StoreManagement Inc.</a>
                 </div>
             </div>
-            
+            @if (!string.IsNullOrEmpty(userEmail))
+            {
+                <div class="action-menu-wrapper">
+                    <ul class="action-menu">
+                        <li class="sub-menu-parent">
+                            <a href="http://google.com">Products</a>
+                            <ul class="sub-menu">
+                                <li><a href="#">Sub Item 1</a></li>
+                                <li><a href="#">Sub Item 2</a></li>
+                                <li><a href="#">Sub Item 3</a></li>
+                                <li><a href="#">Sub Item 4</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-parent">
+                            <a href="#">Categories</a>
+                            <ul class="sub-menu">
+                                <li><a href="#">Sub Item 1</a></li>
+                                <li><a href="#">Sub Item 2</a></li>
+                                <li><a href="#">Sub Item 3</a></li>
+                                <li><a href="#">Sub Item 4</a></li>
 
-            <div class="action-menu-wrapper">
-                <ul class="action-menu">
-                    <li class="action-menu-parent-item">Products</li>
-                    <li class="action-menu-parent-item">Categories</li>
-                    <li class="action-menu-parent-item">Sale Receipts</li>
-                    <li class="action-menu-parent-item">Purchase Invoice</li>
-                    <li class="action-menu-parent-item">Inventory</li>
-                    <li class="action-menu-parent-item">Expired Products</li>
-                </ul>
-            </div>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-parent">
+                            <a href="#">Sale Receipts</a>
+                            <ul class="sub-menu">
+                                <li><a href="#">Sub Item 1</a></li>
+                                <li><a href="#">Sub Item 2</a></li>
+                                <li><a href="#">Sub Item 5</a></li>
+                                <li><a href="#">Sub Item 6</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-parent">
+                            <a href="http://google.com">Purchase Invoice</a>
+                            <ul class="sub-menu">
+                                <li><a href="#">Sub Item 1</a></li>
+                                <li><a href="#">Sub Item 2</a></li>
+                                <li><a href="#">Sub Item 3</a></li>
+                                <li><a href="#">Sub Item 4</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu-parent">
+                            <a href="http://google.com">Inventory</a>
+                        </li>
+                        <li class="sub-menu-parent">
+                            <a href="http://google.com">Expired Products</a>
+                        </li>
+                    </ul>
+                </div>
+            }
+            else
+            {
+                <div class="action-menu-wrapper"></div>
+            }
 
             <div class="login-status">
                 <ul class="register-login">
-                    @if(string.IsNullOrEmpty(userEmail))
+                    @if (string.IsNullOrEmpty(userEmail))
                     {
                         <li class="nav-register-login">
-                                <a class="nav-link text-dark" href="/register">Register</a>
+                            <a class="nav-link text-dark" href="/register">Register</a>
                         </li>
                         <li class="nav-register-login">
-                            
-                                <a class="nav-link text-dark" href="/login">Login</a>
-                            
+
+                            <a class="nav-link text-dark" href="/login">Login</a>
+
                         </li>
-                    } else
+                    }
+                    else
                     {
                         <li class="nav-register-login">
                             <span class="nav-link text-dark" title="@userEmail">Hi @userName</span>
@@ -140,12 +109,12 @@
                     }
                 </ul>
             </div>
-            
+
         </nav>
     </header>
-    
+
     <div class="container">
-        
+
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

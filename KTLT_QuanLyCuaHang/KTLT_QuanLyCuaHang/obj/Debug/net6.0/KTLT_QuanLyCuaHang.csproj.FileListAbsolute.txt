@@ -29,34 +29,65 @@
 /Users/thienannguyenle/Library/CloudStorage/OneDrive-VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.pdb
 /Users/thienannguyenle/Library/CloudStorage/OneDrive-VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.genruntimeconfig.cache
 /Users/thienannguyenle/Library/CloudStorage/OneDrive-VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/ref/KTLT_QuanLyCuaHang.dll
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\bin\Debug\net6.0\appsettings.json
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\bin\Debug\net6.0\KTLT_QuanLyCuaHang.staticwebassets.runtime.json
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\bin\Debug\net6.0\KTLT_QuanLyCuaHang.exe
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\bin\Debug\net6.0\KTLT_QuanLyCuaHang.deps.json
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\bin\Debug\net6.0\KTLT_QuanLyCuaHang.runtimeconfig.json
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\bin\Debug\net6.0\KTLT_QuanLyCuaHang.dll
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\bin\Debug\net6.0\KTLT_QuanLyCuaHang.pdb
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\KTLT_QuanLyCuaHang.csproj.AssemblyReference.cache
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\KTLT_QuanLyCuaHang.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\KTLT_QuanLyCuaHang.AssemblyInfoInputs.cache
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\KTLT_QuanLyCuaHang.AssemblyInfo.cs
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\KTLT_QuanLyCuaHang.csproj.CoreCompileInputs.cache
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\KTLT_QuanLyCuaHang.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\KTLT_QuanLyCuaHang.RazorAssemblyInfo.cache
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\KTLT_QuanLyCuaHang.RazorAssemblyInfo.cs
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\staticwebassets\msbuild.KTLT_QuanLyCuaHang.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\staticwebassets\msbuild.build.KTLT_QuanLyCuaHang.props
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.KTLT_QuanLyCuaHang.props
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.KTLT_QuanLyCuaHang.props
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\staticwebassets.pack.json
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\staticwebassets.build.json
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\scopedcss\bundle\KTLT_QuanLyCuaHang.styles.css
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\scopedcss\projectbundle\KTLT_QuanLyCuaHang.bundle.scp.css
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\KTLT_QuanLyCuaHang.dll
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\refint\KTLT_QuanLyCuaHang.dll
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\KTLT_QuanLyCuaHang.pdb
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\KTLT_QuanLyCuaHang.genruntimeconfig.cache
-C:\Users\LENOVO\OneDrive - VNU-HCMUS\University of Science - VNU\KyThuatLapTrinh\FinalProject_KyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\obj\Debug\net6.0\ref\KTLT_QuanLyCuaHang.dll
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/bin/Debug/net6.0/appsettings.Development.json
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/bin/Debug/net6.0/appsettings.json
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/bin/Debug/net6.0/KTLT_QuanLyCuaHang.staticwebassets.runtime.json
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/bin/Debug/net6.0/KTLT_QuanLyCuaHang.exe
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/bin/Debug/net6.0/KTLT_QuanLyCuaHang.deps.json
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/bin/Debug/net6.0/KTLT_QuanLyCuaHang.runtimeconfig.json
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/bin/Debug/net6.0/KTLT_QuanLyCuaHang.dll
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/bin/Debug/net6.0/KTLT_QuanLyCuaHang.pdb
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.csproj.AssemblyReference.cache
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.AssemblyInfoInputs.cache
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.AssemblyInfo.cs
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.csproj.CoreCompileInputs.cache
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.MvcApplicationPartsAssemblyInfo.cache
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.RazorAssemblyInfo.cache
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.RazorAssemblyInfo.cs
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/staticwebassets/msbuild.KTLT_QuanLyCuaHang.Microsoft.AspNetCore.StaticWebAssets.props
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/staticwebassets/msbuild.build.KTLT_QuanLyCuaHang.props
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.KTLT_QuanLyCuaHang.props
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.KTLT_QuanLyCuaHang.props
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/staticwebassets.pack.json
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/staticwebassets.build.json
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/staticwebassets.development.json
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/scopedcss/bundle/KTLT_QuanLyCuaHang.styles.css
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/scopedcss/projectbundle/KTLT_QuanLyCuaHang.bundle.scp.css
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.dll
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/refint/KTLT_QuanLyCuaHang.dll
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.pdb
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.genruntimeconfig.cache
+C:/Users/LENOVO/OneDrive - VNU-HCMUS/University of Science - VNU/KyThuatLapTrinh/FinalProject_KyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/ref/KTLT_QuanLyCuaHang.dll
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/bin/Debug/net6.0/appsettings.Development.json
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/bin/Debug/net6.0/appsettings.json
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/bin/Debug/net6.0/KTLT_QuanLyCuaHang.staticwebassets.runtime.json
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/bin/Debug/net6.0/KTLT_QuanLyCuaHang
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/bin/Debug/net6.0/KTLT_QuanLyCuaHang.deps.json
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/bin/Debug/net6.0/KTLT_QuanLyCuaHang.runtimeconfig.json
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/bin/Debug/net6.0/KTLT_QuanLyCuaHang.dll
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/bin/Debug/net6.0/KTLT_QuanLyCuaHang.pdb
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.csproj.AssemblyReference.cache
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.GeneratedMSBuildEditorConfig.editorconfig
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.AssemblyInfoInputs.cache
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.AssemblyInfo.cs
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.csproj.CoreCompileInputs.cache
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.MvcApplicationPartsAssemblyInfo.cache
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.RazorAssemblyInfo.cache
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.RazorAssemblyInfo.cs
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/staticwebassets/msbuild.KTLT_QuanLyCuaHang.Microsoft.AspNetCore.StaticWebAssets.props
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/staticwebassets/msbuild.build.KTLT_QuanLyCuaHang.props
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.KTLT_QuanLyCuaHang.props
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.KTLT_QuanLyCuaHang.props
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/staticwebassets.pack.json
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/staticwebassets.build.json
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/staticwebassets.development.json
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/scopedcss/bundle/KTLT_QuanLyCuaHang.styles.css
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/scopedcss/projectbundle/KTLT_QuanLyCuaHang.bundle.scp.css
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.dll
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/refint/KTLT_QuanLyCuaHang.dll
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.pdb
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/KTLT_QuanLyCuaHang.genruntimeconfig.cache
+/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/obj/Debug/net6.0/ref/KTLT_QuanLyCuaHang.dll
