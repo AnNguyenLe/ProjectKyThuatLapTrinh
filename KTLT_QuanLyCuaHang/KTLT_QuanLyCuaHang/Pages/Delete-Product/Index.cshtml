@@ -1,0 +1,197 @@
+﻿@page
+@model KTLT_QuanLyCuaHang.Pages.Delete_Product.IndexModel
+
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@using KTLT_QuanLyCuaHang.Entities
+@using KTLT_QuanLyCuaHang.BusinessLogic_BLL
+@using KTLT_QuanLyCuaHang.Constants
+@{
+    ViewData["Title"] = "Delete Product";
+
+    string userEmail = HttpContextAccessor.HttpContext.Session.GetString("userEmail");
+
+    string infoTextError = string.Empty;
+    string infoTextApproved = string.Empty;
+
+    string productName = string.Empty, productCategory = string.Empty, manufacturer = string.Empty;
+    DateTime mfgDate = DateTime.Now, expDate = DateTime.Now;
+    int quantity = 1;
+    float price = 0;
+
+    string productId = Request.Query["prodId"];
+
+    Product? matchedProduct = Product_BLL.SearchProductBasedOnID(productId);
+
+    if (matchedProduct == null)
+    {
+        infoTextError = $"Product with Product ID {productId} does not exist. Make sure you input the correct Product ID";
+    }
+    else
+    {
+        productName = matchedProduct.Value.name;
+        productCategory = matchedProduct.Value.category;
+        manufacturer = matchedProduct.Value.manufacturer;
+        mfgDate = matchedProduct.Value.mfgDate;
+        expDate = matchedProduct.Value.expDate;
+        quantity = matchedProduct.Value.quantity;
+        price = matchedProduct.Value.price;
+
+
+        if (Request.Method == "POST")
+        {
+            string status = Product_BLL.DeleteProductBasedOnID(productId);
+
+            if (status == ProcessStatusConstants.PRODUCT_ADDING_EMPTY_PRODUCT_DATABASE)
+            {
+                infoTextError = ProcessStatusConstants.PRODUCT_ADDING_EMPTY_PRODUCT_DATABASE;
+            }
+
+            if (status == ProcessStatusConstants.PRODUCT_UPDATING_FAIL)
+            {
+                infoTextError = ProcessStatusConstants.PRODUCT_UPDATING_FAIL;
+            }
+
+            if (status == ProcessStatusConstants.PRODUCT_UPDATING_SUCCESS)
+            {
+                infoTextApproved = ProcessStatusConstants.PRODUCT_UPDATING_SUCCESS;
+                Response.Redirect("/");
+            }
+        }
+    }
+
+
+}
+
+<div class="bodyFrame">
+    @if (string.IsNullOrEmpty(userEmail))
+    {
+        <div style="display:flex; align-items: center; justify-content: center; height: 400px">
+            <h2>Login to use this app</h2>
+        </div>
+    } else
+    {        
+        if (matchedProduct == null )
+        {
+            <p>No product matched for Product ID '@productId'.</p>
+        } 
+        else
+        {
+            <h2 style="padding: 1rem 0">Do you want to delete this product?</h2>
+
+            <div style="padding-bottom: 1.5rem; display: flex; align-items: center">
+                <form method="POST">
+                    <input type="submit" value="Confirm and Delete"/>
+                </form>
+            </div>
+
+            <table>
+                <tr>
+                    <th>ProductID</th>
+                    <th>Product Name</th>
+                    <th>Product Category</th>
+                    <th>Manufacturer</th>
+                    <th>
+                        <p>Manufacturing Date</p>
+                        <p>(mm/dd/yyyy)</p>
+                    </th>
+                    <th>
+                        <p>Expiration Date</p>
+                        <p>(mm/dd/yyyy)</p>
+                    </th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>@matchedProduct.Value.id</td>
+                    <td>@matchedProduct.Value.name</td>
+                    <td>@matchedProduct.Value.category</td>
+                    <td>@matchedProduct.Value.manufacturer</td>
+                    <td>@matchedProduct.Value.mfgDate.ToShortDateString()</td>
+                    <td>@matchedProduct.Value.expDate.ToShortDateString()</td>
+                    <td>@matchedProduct.Value.price</td>
+                </tr>
+                }
+
+            </table>
+        }
+    }
+</div>
+
+@section Styling{
+        <style>
+            .bodyFrame {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 82vh;
+            }
+
+            .page-header{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .info-text-error {
+                background-color: red;
+                color: white;
+            }
+
+            .info-text-approved {
+                background-color: forestgreen;
+                color: white;
+            }
+
+            form {
+                width: 55%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                height: 55%;
+            }
+
+            .inputField {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
+
+                .inputField > input {
+                    width: 60%;
+                    padding-left: 1rem;
+                }
+
+            label {
+                font-weight: bold;
+            }
+
+            input {
+                border-radius: 8px;
+            }
+
+                input:focus {
+                    background-color: azure
+                }
+
+            .submit-button {
+                width: 100%;
+                color: white;
+                background-color: deepskyblue;
+                font-weight: bold;
+                font-size: medium;
+                height: 40px;
+                margin-top: 30px;
+            }
+
+                .submit-button:hover {
+                    background-color: blue;
+                }
+        </style>
+}
+
+

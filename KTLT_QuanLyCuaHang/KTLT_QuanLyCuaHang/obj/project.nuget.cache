@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "o9PZfXnDj6YR/4K3rTNL80gv6SbsRSWiv/7EnMBGdNXQzYFfQk6Dj1kuk/Stsho+19tKmQv+sa4/3QOKyrnaDg==",
+  "dgSpecHash": "6CASNskzbdzz9g0hes1h/3Be+bo0Jn16l5Pm7OqlIdxn3qtEXmQY32WbU+dFeb6d58DBO2vsLgA0VH2YEIM86w==",
   "success": true,
-  "projectFilePath": "/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\KyThuatLapTrinh\\ProjectKyThuatLapTrinh\\KTLT_QuanLyCuaHang\\KTLT_QuanLyCuaHang\\KTLT_QuanLyCuaHang.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\LENOVO\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

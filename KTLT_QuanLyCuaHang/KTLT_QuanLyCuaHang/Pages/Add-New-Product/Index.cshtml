@@ -1,0 +1,204 @@
+﻿@page
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@using KTLT_QuanLyCuaHang.Entities
+@using KTLT_QuanLyCuaHang.BusinessLogic_BLL
+@using KTLT_QuanLyCuaHang.Constants
+
+@model KTLT_QuanLyCuaHang.Pages.AddNewProduct.IndexModel
+@{
+    ViewData["Title"] = "Add New Product";
+
+    string userEmail = HttpContextAccessor.HttpContext.Session.GetString("userEmail");
+
+    string infoTextError = string.Empty;
+    string infoTextApproved = string.Empty;
+
+    string productId = string.Empty, productName = string.Empty, productCategory = string.Empty, manufacturer = string.Empty;
+    DateTime mfgDate = DateTime.Now, expDate = DateTime.Now;
+    int quantity = 1;
+    float price = 0;
+
+    if (Request.Method == "POST")
+    {
+        productId = Request.Form["productId"];
+        productName = Request.Form["productName"];
+        productCategory = Request.Form["productCategory"];
+        manufacturer = Request.Form["manufacturer"];
+        mfgDate = DateTime.Parse(Request.Form["mfgDate"]);
+        expDate = DateTime.Parse(Request.Form["expDate"]);
+        quantity = int.Parse(Request.Form["quantity"]);
+        price = float.Parse(Request.Form["price"]);
+
+        Product newProduct = new Product();
+        newProduct.id = productId;
+        newProduct.name = productName;
+        newProduct.category = productCategory;
+        newProduct.manufacturer = manufacturer;
+        newProduct.mfgDate = mfgDate;
+        newProduct.expDate = expDate;
+        newProduct.quantity = quantity;
+        newProduct.price = price;
+
+        string status = Product_BLL.AddProduct(newProduct);
+
+        if (status == ProcessStatusConstants.PRODUCT_ADDING_FAIL_DUPLICATED_ID)
+        {
+            infoTextError = ProcessStatusConstants.PRODUCT_ADDING_FAIL_DUPLICATED_ID;
+        }
+
+        if (status == ProcessStatusConstants.PRODUCT_ADDING_FAIL_INPUTS)
+        {
+            infoTextError = ProcessStatusConstants.PRODUCT_ADDING_FAIL_INPUTS;
+        }
+
+        if (status == ProcessStatusConstants.PRODUCT_ADDING_SUCCESS)
+        {
+            infoTextApproved = ProcessStatusConstants.PRODUCT_ADDING_SUCCESS;
+            Response.Redirect("/");
+        }
+    }
+}
+
+<div class="bodyFrame">
+    @if (string.IsNullOrEmpty(userEmail))
+    {
+        <div style="display:flex; align-items: center; justify-content: center; height: 400px">
+            <h2>Login to use this app</h2>
+        </div>
+    } else {
+        <div class="page-header">
+            <h2>ADD NEW PRODUCT</h2>
+        </div>
+        <form method="post">
+            <div class="inputField">
+                <label for="productId">Product ID</label>
+                <input type="text" name="productId" value="@productId"/>
+            </div>
+
+            <div class="inputField">
+                <label for="productName">Product Name</label>
+                <input type="text" name="productName" value="@productName"/>
+            </div>
+
+            <div class="inputField">
+                <label for="productCategory">Product Category</label>
+                <input type="text" name="productCategory" value="@productCategory"/>
+            </div>
+
+            <div class="inputField">
+                <label for="manufacturer">Manufacturer</label>
+                <input type="text" name="manufacturer" value="@manufacturer"/>
+            </div>
+
+            <div class="inputField">
+                <label for="mfgDate">Manufacturering Date</label>
+                <input type="text" name="mfgDate" placeholder="format: mm-dd-yyyy" value="@mfgDate.ToShortDateString()" />
+            </div>
+
+            <div class="inputField">
+                <label for="expDate">Expiration Date</label>
+                <input type="text" name="expDate" placeholder="format: mm-dd-yyyy" value="@expDate.ToShortDateString()" />
+            </div>
+
+            <div class="inputField">
+                <label for="quantity">Quantity</label>
+                <input type="number" name="quantity" value="@quantity"/>
+            </div>
+
+            <div class="inputField">
+                <label for="price">Price</label>
+                <input type="text" name="price" value="@price"/>
+            </div>
+
+            @if (!string.IsNullOrEmpty(infoTextError))
+            {
+                <p class="info-text-error">@infoTextError</p>
+            }
+       
+            @if (!string.IsNullOrEmpty(infoTextApproved))
+            {
+                <p class="info-text-approved">@infoTextApproved</p>
+            }
+
+            <input class="submit-button" type="submit" value="Add Product">
+        </form>                                 
+    }
+</div>
+
+@section Styling{
+    <style>
+        .bodyFrame {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 82vh;
+        }
+
+        .page-header{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .info-text-error {
+            background-color: red;
+            color: white;
+        }
+
+        .info-text-approved {
+            background-color: forestgreen;
+            color: white;
+        }
+
+        form {
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 55%;
+        }
+
+        .inputField {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .inputField > input {
+                width: 60%;
+                padding-left: 1rem;
+            }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            border-radius: 8px;
+        }
+
+            input:focus {
+                background-color: azure
+            }
+
+        .submit-button {
+            width: 100%;
+            color: white;
+            background-color: deepskyblue;
+            font-weight: bold;
+            font-size: medium;
+            height: 40px;
+            margin-top: 30px;
+        }
+
+            .submit-button:hover {
+                background-color: blue;
+            }
+    </style>
+}

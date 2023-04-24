@@ -1,10 +1,181 @@
 ﻿@page
+@using Microsoft.AspNetCore.Http
+@using KTLT_QuanLyCuaHang.Entities
+@using KTLT_QuanLyCuaHang.BusinessLogic_BLL
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+
+    string userEmail = HttpContextAccessor.HttpContext.Session.GetString("userEmail");
+
+    string infoText = string.Empty;
+    string searchText = string.Empty;
+    string searchProduct = string.Empty;
+
+    Product[]? products = Product_BLL.GetProductList();
+
+    if(Request.Method == "POST")
+    {
+        searchText = Request.Form["searchText"];
+        searchProduct = Request.Form["searchProduct"];
+
+        products = Product_BLL.SearchProduct(searchText);
+
+        if (products == null)
+        {
+            infoText = $"No product matched '{searchText}'";
+        }
+
+    }
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+    @if (string.IsNullOrEmpty(userEmail))
+    {
+        <div style="display:flex; align-items: center; justify-content: center; height: 400px">
+            <h2>Login to use this app</h2>
+        </div>
+    } else
+    {
+        @if (string.IsNullOrEmpty(searchProduct))
+        {
+            <h2 style="padding: 1rem 0">List of Products</h2>
+        } else
+        {
+            <h2 style="padding: 1rem 0">Matched Products for keyword '@searchText'</h2>
+        }
+
+        <div style="padding-bottom: 1.5rem; display: flex; align-items: center">
+            @if (string.IsNullOrEmpty(searchProduct))
+            {
+                <a href="/add-new-product" class="action-button add-new-product">Add new product</a>
+            } else
+            {
+                <a href="/" class="action-button add-new-product">Back to all products</a>
+            }
+            <div class="search-product-wrapper">
+                <form method="POST">
+                    <input class="search-input" type="text" name="searchText" value="@searchText" placeholder="Search any column..." />
+                    <input type="hidden" name="searchProduct" value="searchProduct"/>
+                    <input class="action-button" type="submit" value="Search" />
+                </form>
+            </div>
+        </div>
+
+        @if (products == null && string.IsNullOrEmpty(searchProduct))
+        {
+            <p>No Data...</p>
+        }
+        else if (products == null && !string.IsNullOrEmpty(searchProduct))
+        {
+            <p>No product matched for '@searchText'.</p>
+        } 
+        else
+        {
+            <table>
+                <tr>
+                    <th>ProductID</th>
+                    <th>Product Name</th>
+                    <th>Product Category</th>
+                    <th>Manufacturer</th>
+                    <th>
+                        <p>Manufacturing Date</p>
+                        <p>(mm/dd/yyyy)</p>
+                    </th>
+                    <th>
+                        <p>Expiration Date</p>
+                        <p>(mm/dd/yyyy)</p>
+                    </th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+                @foreach (Product p in products) {
+                    <tr>
+                        <td>@p.id</td>
+                        <td>@p.name</td>
+                        <td>@p.category</td>
+                        <td>@p.manufacturer</td>
+                        <td>@p.mfgDate.ToShortDateString()</td>
+                        <td>@p.expDate.ToShortDateString()</td>
+                        <td>@p.price</td>
+                        <td class="action-buttons-wrapper">
+                            <p><a href="/update-product?prodId=@p.id" class="action-button">Update</a></p>
+                            <p><a href="/delete-product?prodId=@p.id" class="action-button dangerous">Delete</a></p>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        }
+    }
+
 </div>
+
+@section Styling{
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        .action-button {
+            text-decoration: none;
+            display: inline-block;
+            line-height: 1.5rem;
+            background-color: deepskyblue;
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            padding: 8px;
+        }
+
+        .action-button:hover{
+            color: white;
+            background-color: blue;
+        }
+
+        .action-button.dangerous {
+            background-color: red;
+        }
+
+        .add-new-product{
+            background-color: forestgreen;
+        }
+
+        .action-button.dangerous:hover {
+            background-color: darkred;
+        }
+
+        .action-buttons-wrapper{
+            display: flex;
+            padding: 5px 10px;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .search-product-wrapper{
+            padding-left: 4rem;
+        }
+
+        .search-input {
+            width: 25rem;
+            line-height: 1.5rem;
+            border-radius: 8px;
+            padding-left: 1rem;
+            padding: 8px;
+        }
+
+    </style>
+}

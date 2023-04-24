@@ -147,7 +147,7 @@ ul {
     position: absolute;
     top: 120%;
     left: -50%;
-    width: 250px;
+    width: 280px;
     transform: translateY(-2em);
     z-index: -1;
     transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
@@ -166,7 +166,7 @@ ul {
         border-radius: 12px;
         background-color: deepskyblue;
         font-weight: bold;
-        font-size: 1.5rem;
+        font-size: 1.25rem;
     }
 
         .sub-menu li:hover a {
@@ -181,6 +181,14 @@ ul {
     z-index: 1;
     transform: translateY(0%);
     transition-delay: 0s, 0s, 0.3s; /* this removes the transition delay so the menu will be visible while the other styles transition */
+}
+
+.sub-menu-parent > ul {
+    padding: 0;
+}
+
+.action-menu-wrapper > ul {
+    padding-left: 1rem;
 }
 
 .action-menu-wrapper ul,

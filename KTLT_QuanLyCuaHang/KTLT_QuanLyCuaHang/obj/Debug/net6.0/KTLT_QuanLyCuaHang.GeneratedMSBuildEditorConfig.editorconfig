@@ -9,49 +9,61 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = KTLT_QuanLyCuaHang
 build_property.RootNamespace = KTLT_QuanLyCuaHang
-build_property.ProjectDir = /Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/
+build_property.ProjectDir = D:\KyThuatLapTrinh\ProjectKyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang
+build_property.MSBuildProjectDirectory = D:\KyThuatLapTrinh\ProjectKyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Add-New-Product/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkLU5ldy1Qcm9kdWN0XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Delete-Product/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVsZXRlLVByb2R1Y3RcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Login/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4vSW5kZXguY3NodG1s
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Logout/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9nb3V0L0luZGV4LmNzaHRtbA==
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJpdmFjeS5jc2h0bWw=
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Register/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVnaXN0ZXIvSW5kZXguY3NodG1s
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Logout/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9nb3V0XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Register/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/thienannguyenle/Documents/Projects/RazorServer/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-a72uw2inz2
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Update-Product/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXBkYXRlLVByb2R1Y3RcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-vsftc6tc21
