@@ -21,5 +21,10 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
 
             return true;
         }
+
+        public static string TransformToContinuousLowercaseString(string str)
+        {
+            return string.Join("", str.Trim().ToLower().Split());
+        }
     }
 }

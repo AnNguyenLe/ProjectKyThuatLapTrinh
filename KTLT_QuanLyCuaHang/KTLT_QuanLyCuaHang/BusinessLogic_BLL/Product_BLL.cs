@@ -1,6 +1,7 @@
 ﻿using KTLT_QuanLyCuaHang.Entities;
 using KTLT_QuanLyCuaHang.DataAccess_DAL;
 using KTLT_QuanLyCuaHang.Constants;
+using System.Linq;
 
 namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
 {
@@ -16,6 +17,11 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
             }
 
             return productList.products;
+        }
+
+        public static bool isNoE(string str)
+        {
+            return string.IsNullOrEmpty(str) || str.Trim().ToLower() == "null";
         }
 
         public static string AddProduct(Product p)
@@ -35,11 +41,25 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
                 return ProcessStatusConstants.PRODUCT_ADDING_FAIL_DUPLICATED_ID;
             }
 
-            bool acceptedCondition = !string.IsNullOrEmpty(p.id) && !string.IsNullOrEmpty(p.name) && !string.IsNullOrEmpty(p.category) && !string.IsNullOrEmpty(p.manufacturer) && p.quantity > 0 && p.price >= 0 && p.mfgDate <= DateTime.Today && p.expDate >= DateTime.UtcNow;
-
-            if (!acceptedCondition)
+            if (isNoE(p.id) || isNoE(p.name) || isNoE(p.category) || isNoE(p.manufacturer) || isNoE(p.quantity.ToString()) || isNoE(p.price.ToString()) || isNoE(p.mfgDate.ToString()) || isNoE(p.expDate.ToString()) )
             {
-                return ProcessStatusConstants.PRODUCT_ADDING_FAIL_INPUTS;
+                return ProcessStatusConstants.PRODUCT_FAIL_INPUTS_ALL_FIELDS_REQUIRED;
+            }
+            if (p.quantity < 0)
+            {
+                return ProcessStatusConstants.PRODUCT_FAIL_INPUTS_QUANTITY_NOT_ALLOW_BELOW_ZERO;
+            }
+            if (p.price < 0)
+            {
+                return ProcessStatusConstants.PRODUCT_FAIL_INPUTS_PRICE_NOT_ALLOW_BELOW_ZERO;
+            }
+            if (p.mfgDate > DateTime.Today)
+            {
+                return ProcessStatusConstants.PRODUCT_FAIL_INPUTS_MFG_DATE_NOT_IN_FUTURE;
+            }
+            if (p.expDate < DateTime.Today)
+            {
+                return ProcessStatusConstants.PRODUCT_FAIL_INPUTS_EXP_DATE_NOT_IN_PAST;
             }
 
             Product[] updatedProducts = new Product[products.Length + 1];
@@ -65,7 +85,7 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
                 return null;
             }
             
-            string s = rawSearchText.Trim().ToLower();
+            string s = string.Join("", rawSearchText.Trim().ToLower().Split());
 
             int counter = 0;
             foreach(Product p in products)
@@ -126,10 +146,31 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
 
             if(products == null)
             {
-                return ProcessStatusConstants.PRODUCT_ADDING_EMPTY_PRODUCT_DATABASE;
+                return ProcessStatusConstants.PRODUCT_EMPTY_PRODUCT_DATABASE;
             }
 
-            for(int i = 0; i < products.Length; i++)
+            if (isNoE(p.id) || isNoE(p.name) || isNoE(p.category) || isNoE(p.manufacturer) || isNoE(p.quantity.ToString()) || isNoE(p.price.ToString()) || isNoE(p.mfgDate.ToString()) || isNoE(p.expDate.ToString()))
+            {
+                return ProcessStatusConstants.PRODUCT_FAIL_INPUTS_ALL_FIELDS_REQUIRED;
+            }
+            if (p.quantity < 0)
+            {
+                return ProcessStatusConstants.PRODUCT_FAIL_INPUTS_QUANTITY_NOT_ALLOW_BELOW_ZERO;
+            }
+            if (p.price < 0)
+            {
+                return ProcessStatusConstants.PRODUCT_FAIL_INPUTS_PRICE_NOT_ALLOW_BELOW_ZERO;
+            }
+            if (p.mfgDate > DateTime.Today)
+            {
+                return ProcessStatusConstants.PRODUCT_FAIL_INPUTS_MFG_DATE_NOT_IN_FUTURE;
+            }
+            if (p.expDate < DateTime.Today)
+            {
+                return ProcessStatusConstants.PRODUCT_FAIL_INPUTS_EXP_DATE_NOT_IN_PAST;
+            }
+
+            for (int i = 0; i < products.Length; i++)
             {
                 if(p.id == products[i].id)
                 {
@@ -142,9 +183,38 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
             return ProcessStatusConstants.PRODUCT_UPDATING_FAIL;
         }
 
-        public static void DeleteProductBasedOnID(string productId)
+        public static string DeleteProductBasedOnID(string productId)
         {
+            Product[]? products = GetProductList();
 
+            if (products == null)
+            {
+                return ProcessStatusConstants.PRODUCT_EMPTY_PRODUCT_DATABASE;
+            }
+
+            Product? matchedProduct = SearchProductBasedOnID(productId);
+
+            if(matchedProduct == null)
+            {
+                return ProcessStatusConstants.PRODUCT_CANNOT_FIND_PRODUCT_ID;
+            }
+
+            Product[] updatedProducts = new Product[products.Length - 1];
+
+            int counter = 0;
+            foreach(Product p in products)
+            {
+                if(p.id == productId)
+                {
+                    continue;
+                }
+                updatedProducts[counter] = p;
+                ++counter;
+            }
+
+            Product_DAL.SaveProductList(updatedProducts);
+
+            return ProcessStatusConstants.PRODUCT_DELETING_SUCCESS;
         }
     }
 }

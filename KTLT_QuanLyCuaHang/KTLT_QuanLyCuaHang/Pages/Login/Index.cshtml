@@ -9,7 +9,7 @@
     string infoTextError = string.Empty;
     string infoTextApproved = string.Empty;
 
-    string email, password;
+    string email = string.Empty, password = string.Empty;
 
     if(Request.Method == "POST")
     {
@@ -47,12 +47,12 @@
     <form method="post">
         <div class="inputField">
             <label for="userEmail">Email</label>
-            <input type="email" name="userEmail" />
+            <input type="email" name="userEmail" value="@email"/>
         </div>
 
         <div class="inputField">
             <label for="userPassword">Password</label>
-            <input type="password" name="userPassword" />
+            <input type="password" name="userPassword" value="@password" />
         </div>
 
          @if (!string.IsNullOrEmpty(infoTextError))

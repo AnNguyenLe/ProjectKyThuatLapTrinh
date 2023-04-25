@@ -60,9 +60,34 @@
 
             string status = Product_BLL.UpdateProductBasedOnID(updatedProduct);
 
-            if (status == ProcessStatusConstants.PRODUCT_ADDING_EMPTY_PRODUCT_DATABASE)
+            if (status == ProcessStatusConstants.PRODUCT_EMPTY_PRODUCT_DATABASE)
             {
-                infoTextError = ProcessStatusConstants.PRODUCT_ADDING_EMPTY_PRODUCT_DATABASE;
+                infoTextError = ProcessStatusConstants.PRODUCT_EMPTY_PRODUCT_DATABASE;
+            }
+
+            if (status == ProcessStatusConstants.PRODUCT_FAIL_INPUTS_ALL_FIELDS_REQUIRED)
+            {
+                infoTextError = ProcessStatusConstants.PRODUCT_FAIL_INPUTS_ALL_FIELDS_REQUIRED;
+            }
+
+            if (status == ProcessStatusConstants.PRODUCT_FAIL_INPUTS_QUANTITY_NOT_ALLOW_BELOW_ZERO)
+            {
+                infoTextError = ProcessStatusConstants.PRODUCT_FAIL_INPUTS_QUANTITY_NOT_ALLOW_BELOW_ZERO;
+            }
+
+            if (status == ProcessStatusConstants.PRODUCT_FAIL_INPUTS_PRICE_NOT_ALLOW_BELOW_ZERO)
+            {
+                infoTextError = ProcessStatusConstants.PRODUCT_FAIL_INPUTS_PRICE_NOT_ALLOW_BELOW_ZERO;
+            }
+
+            if (status == ProcessStatusConstants.PRODUCT_FAIL_INPUTS_MFG_DATE_NOT_IN_FUTURE)
+            {
+                infoTextError = ProcessStatusConstants.PRODUCT_FAIL_INPUTS_MFG_DATE_NOT_IN_FUTURE;
+            }
+
+            if (status == ProcessStatusConstants.PRODUCT_FAIL_INPUTS_EXP_DATE_NOT_IN_PAST)
+            {
+                infoTextError = ProcessStatusConstants.PRODUCT_FAIL_INPUTS_EXP_DATE_NOT_IN_PAST;
             }
 
             if (status == ProcessStatusConstants.PRODUCT_UPDATING_FAIL)
@@ -91,7 +116,7 @@
         <div class="page-header">
             <h2>UPDATE PRODUCT</h2>
         </div>
-        <form method="post">
+        <form class="input-form" method="post">
             <div class="inputField">
                 <label for="productId">Product ID</label>
                 <input type="text" style="color: darkgrey" name="productId" value="@productId" disabled/>
@@ -153,7 +178,7 @@
             width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
             height: 82vh;
         }
@@ -175,13 +200,13 @@
             color: white;
         }
 
-        form {
+        .input-form {
             width: 55%;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
             align-items: center;
-            height: 55%;
+            height: 80%;
         }
 
         .inputField {
