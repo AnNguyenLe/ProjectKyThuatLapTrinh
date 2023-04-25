@@ -1,0 +1,163 @@
+﻿@page
+@model KTLT_QuanLyCuaHang.Pages.Product_Category.IndexModel
+@using Microsoft.AspNetCore.Http
+@using KTLT_QuanLyCuaHang.Entities
+@using KTLT_QuanLyCuaHang.BusinessLogic_BLL
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Product Category";
+
+    string userEmail = HttpContextAccessor.HttpContext.Session.GetString("userEmail");
+
+    string infoText = string.Empty;
+    string searchText = string.Empty;
+    string searchProdCategory = string.Empty;
+
+    string[]? categories = ProductCategory_BLL.GetCategoryList();
+
+    if(Request.Method == "POST")
+    {
+        searchText = Request.Form["searchText"];
+        searchProdCategory = Request.Form["searchProdCategory"];
+
+        categories = ProductCategory_BLL.SearchCategory(searchText);
+
+        if (categories == null)
+        {
+            infoText = $"No product matched '{searchText}'";
+        }
+
+    }
+}
+
+<div>
+    @if (string.IsNullOrEmpty(userEmail))
+    {
+        <div style="display:flex; align-items: center; justify-content: center; height: 400px">
+            <h2>Login to use this app</h2>
+        </div>
+    } else
+    {
+        @if (string.IsNullOrEmpty(searchProdCategory))
+        {
+            <h2 style="padding: 1rem 0">List of Product Categories</h2>
+        } else
+        {
+            <h2 style="padding: 1rem 0">Matched Product Categories for keyword '@searchText'</h2>
+        }
+
+        <div style="padding-bottom: 1.5rem; display: flex; align-items: center">
+            @if (string.IsNullOrEmpty(searchProdCategory))
+            {
+                <a href="/add-new-product-category" class="action-button add-new-product">Add new product category</a>
+            } else
+            {
+                <a href="/product-category" class="action-button add-new-product">Back to all categories</a>
+            }
+            <div class="search-product-wrapper">
+                <form method="POST">
+                    <input class="search-input" type="text" name="searchText" value="@searchText" placeholder="Search product category..." />
+                    <input type="hidden" name="searchProdCategory" value="searchProdCategory"/>
+                    <input class="action-button" type="submit" value="Search" />
+                </form>
+            </div>
+        </div>
+
+        @if (categories == null && string.IsNullOrEmpty(searchProdCategory))
+        {
+            <p>No Data...</p>
+        }
+        else if (categories == null && !string.IsNullOrEmpty(searchProdCategory))
+        {
+            <p>No product category matched for '@searchText'.</p>
+        } 
+        else
+        {
+            <table>
+                <tr>
+                    <th>Product Category</th>
+                    <th>Actions</th>
+                </tr>
+                @foreach (string category in categories) {
+                    <tr>
+                        <td>@category</td>
+                        <td class="action-buttons-wrapper">
+                            <p><a href="/update-product?prodId=@category" class="action-button">Update</a></p>
+                            <p><a href="/delete-product?prodId=@category" class="action-button dangerous">Delete</a></p>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        }
+    }
+
+</div>
+
+@section Styling{
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #dddddd;
+        }
+
+        .action-button {
+            text-decoration: none;
+            display: inline-block;
+            line-height: 1.5rem;
+            background-color: deepskyblue;
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            padding: 8px;
+        }
+
+        .action-button:hover{
+            color: white;
+            background-color: blue;
+        }
+
+        .action-button.dangerous {
+            background-color: red;
+        }
+
+        .add-new-product{
+            background-color: forestgreen;
+        }
+
+        .action-button.dangerous:hover {
+            background-color: darkred;
+        }
+
+        .action-buttons-wrapper{
+            display: flex;
+            padding: 5px 10px;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .search-product-wrapper{
+            padding-left: 4rem;
+        }
+
+        .search-input {
+            width: 25rem;
+            line-height: 1.5rem;
+            border-radius: 8px;
+            padding-left: 1rem;
+            padding: 8px;
+        }
+
+    </style>
+}

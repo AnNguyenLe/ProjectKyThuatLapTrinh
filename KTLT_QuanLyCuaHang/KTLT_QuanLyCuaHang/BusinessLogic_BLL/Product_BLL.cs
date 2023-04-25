@@ -21,7 +21,7 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
 
         public static bool isNoE(string str)
         {
-            return string.IsNullOrEmpty(str) || str.Trim().ToLower() == "null";
+            return Shared_BLL.isNoE(str);
         }
 
         public static string AddProduct(Product p)

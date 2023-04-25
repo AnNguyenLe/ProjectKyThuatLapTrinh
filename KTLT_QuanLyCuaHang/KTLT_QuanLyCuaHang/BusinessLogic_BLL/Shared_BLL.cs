@@ -26,5 +26,10 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
         {
             return string.Join("", str.Trim().ToLower().Split());
         }
+
+        public static bool isNoE(string str)
+        {
+            return string.IsNullOrEmpty(str) || str.Trim().ToLower() == "null";
+        }
     }
 }
