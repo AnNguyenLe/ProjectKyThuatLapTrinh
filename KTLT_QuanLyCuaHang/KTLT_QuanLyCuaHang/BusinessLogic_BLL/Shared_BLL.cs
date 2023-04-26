@@ -34,7 +34,7 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
         }
 
         public static bool CheckProductExpired(DateTime expDate) {
-            return DateTime.UtcNow.CompareTo(expDate) >= 0;
+            return DateTime.Today.CompareTo(expDate) >= 0;
         }
 
         public static bool CheckProductExpiresNext7Days(DateTime expDate)

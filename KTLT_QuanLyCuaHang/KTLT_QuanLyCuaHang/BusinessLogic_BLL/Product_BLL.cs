@@ -234,7 +234,7 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
             int counter = 0;
             foreach(Product p in products)
             {
-                if(DateTime.UtcNow >= p.expDate)
+                if(DateTime.Today >= p.expDate)
                 {
                     ++counter;
                 }
