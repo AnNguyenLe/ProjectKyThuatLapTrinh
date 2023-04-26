@@ -1,6 +1,5 @@
 ﻿@page
-@model KTLT_QuanLyCuaHang.Pages.AddNewProduct.IndexModel
-
+@model KTLT_QuanLyCuaHang.Pages.Add_New_Product_Category.IndexModel
 @using Microsoft.AspNetCore.Http
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @using KTLT_QuanLyCuaHang.Entities
@@ -8,7 +7,7 @@
 @using KTLT_QuanLyCuaHang.Constants
 
 @{
-    ViewData["Title"] = "Add New Product";
+    ViewData["Title"] = "Add New Product Category";
 
     string userEmail = HttpContextAccessor.HttpContext.Session.GetString("userEmail");
 
@@ -41,7 +40,17 @@
         newProduct.quantity = quantity;
         newProduct.price = price;
 
-        string status = Product_BLL.AddProduct(newProduct);
+        string status = ProductCategory_BLL.AddNewProductCategory(newProduct);
+
+        if (status == ProcessStatusConstants.PRODUCT_ADDING_FAIL_NULL_OR_EMPTY_ID)
+        {
+            infoTextError = ProcessStatusConstants.PRODUCT_ADDING_FAIL_NULL_OR_EMPTY_ID;
+        }
+
+        if(status == ProcessStatusConstants.PRODUCT_CATEGORY_ADDING_FAIL_DUPLICATED_ID)
+        {
+            infoTextError = ProcessStatusConstants.PRODUCT_CATEGORY_ADDING_FAIL_DUPLICATED_ID;
+        }
 
         if (status == ProcessStatusConstants.PRODUCT_ADDING_FAIL_DUPLICATED_ID)
         {
@@ -76,7 +85,7 @@
         if (status == ProcessStatusConstants.PRODUCT_ADDING_SUCCESS)
         {
             infoTextApproved = ProcessStatusConstants.PRODUCT_ADDING_SUCCESS;
-            Response.Redirect("/");
+            Response.Redirect("/product-category");
         }
     }
 }
@@ -87,29 +96,34 @@
         <div style="display:flex; align-items: center; justify-content: center; height: 400px">
             <h2>Login to use this app</h2>
         </div>
-    } else {
+    }
+    else
+    {
         <div class="page-header">
-            <h2>ADD NEW PRODUCT</h2>
+            <h2>ADD NEW PRODUCT CATEGORY...</h2>
         </div>
         <form class="input-form" method="post">
+
+            <div class="inputField new">
+                <label for="productCategory">New Product Category</label>
+                <input type="text" name="productCategory" value="@productCategory" />
+            </div>
+
+            <h3 style="padding: 1rem 0; color: slategrey">And a product that is classified under this new category...</h3>
+
             <div class="inputField">
                 <label for="productId">Product ID</label>
-                <input type="text" name="productId" value="@productId"/>
+                <input type="text" name="productId" value="@productId" />
             </div>
 
             <div class="inputField">
                 <label for="productName">Product Name</label>
-                <input type="text" name="productName" value="@productName"/>
-            </div>
-
-            <div class="inputField">
-                <label for="productCategory">Product Category</label>
-                <input type="text" name="productCategory" value="@productCategory"/>
+                <input type="text" name="productName" value="@productName" />
             </div>
 
             <div class="inputField">
                 <label for="manufacturer">Manufacturer</label>
-                <input type="text" name="manufacturer" value="@manufacturer"/>
+                <input type="text" name="manufacturer" value="@manufacturer" />
             </div>
 
             <div class="inputField">
@@ -124,26 +138,26 @@
 
             <div class="inputField">
                 <label for="quantity">Quantity</label>
-                <input type="number" name="quantity" value="@quantity"/>
+                <input type="number" name="quantity" value="@quantity" />
             </div>
 
             <div class="inputField">
                 <label for="price">Price</label>
-                <input type="text" name="price" value="@price"/>
+                <input type="text" name="price" value="@price" />
             </div>
 
             @if (!string.IsNullOrEmpty(infoTextError))
             {
                 <p class="info-text-error">@infoTextError</p>
             }
-       
+
             @if (!string.IsNullOrEmpty(infoTextApproved))
             {
                 <p class="info-text-approved">@infoTextApproved</p>
             }
 
-            <input class="submit-button" type="submit" value="Add Product">
-        </form>                                 
+            <input class="submit-button" type="submit" value="Add New Product Category">
+        </form>
     }
 </div>
 
@@ -158,7 +172,7 @@
             height: 90vh;
         }
 
-        .page-header{
+        .page-header {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -193,6 +207,22 @@
             .inputField > input {
                 width: 60%;
                 padding-left: 1rem;
+            }
+
+        .inputField.new {
+            font-size: 1.5rem;
+            background-color: forestgreen;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            padding-left: 1rem;
+        }
+
+            .inputField.new > input {
+                width: 60%;
+                padding-left: 1rem;
+                line-height: 1.5rem;
+                font-weight: bold
             }
 
         label {

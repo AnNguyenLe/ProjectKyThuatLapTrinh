@@ -107,8 +107,11 @@
                 </tr>
             </table>
             
-            <form method="POST">
+            <form method="POST" class="action-form">
                 <input type="submit" class="action-button dangerous" value="Confirm and Delete" />
+                <a href="/" class="action-button">
+                    Cancel
+                </a>
             </form>
         }
     }
@@ -143,21 +146,43 @@
                 padding: 8px;
             }
 
-            tr:nth-child(odd) {
+            tr:first-child, tr:first-child:hover{
+            background-color: deepskyblue;
+            color: white;
+            }
+
+            tr:hover {
                 background-color: #dddddd;
             }
 
-            .action-button.dangerous {
+            .action-form{
+                display: flex;
+                justify-content: space-around;
+                width: 50%;
+            }
+
+            .action-button {
                 text-decoration: none;
                 display: inline-block;
                 line-height: 1.5rem;
-                background-color: red;
+                background-color: deepskyblue;
                 color: white;
                 text-align: center;
                 border-radius: 4px;
                 font-weight: bold;
                 padding: 8px;
+                width: 15rem;
             }
+
+            a.action-button{
+                text-decoration: none;
+                color: white
+            }
+
+            .action-button.dangerous{
+                background-color: red;
+            }
+            
         </style>
 }
 

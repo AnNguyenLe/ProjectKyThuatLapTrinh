@@ -26,6 +26,11 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
 
         public static string AddProduct(Product p)
         {
+            if (Shared_BLL.isNoE(p.id))
+            {
+                return ProcessStatusConstants.PRODUCT_ADDING_FAIL_NULL_OR_EMPTY_ID;
+            }
+
             Product[]? products = GetProductList();
 
             if(products == null)

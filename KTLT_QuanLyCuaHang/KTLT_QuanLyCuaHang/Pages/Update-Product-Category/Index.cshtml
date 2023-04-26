@@ -1,0 +1,209 @@
+﻿@page
+@model KTLT_QuanLyCuaHang.Pages.Update_Product_Category.IndexModel
+
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@using KTLT_QuanLyCuaHang.Entities
+@using KTLT_QuanLyCuaHang.BusinessLogic_BLL
+@using KTLT_QuanLyCuaHang.Constants
+@{
+    ViewData["Title"] = "Update Product Category";
+
+    string userEmail = HttpContextAccessor.HttpContext.Session.GetString("userEmail");
+
+    string infoTextError = string.Empty;
+    string infoTextApproved = string.Empty;
+
+    string productCategory = Request.Query["prodCategoryId"];
+
+    Product[]? matchedProducts = ProductCategory_BLL.GetProductsUnderCategory(productCategory);
+
+    if (matchedProducts == null)
+    {
+        infoTextError = $"No product under category '{productCategory}'. Make sure you input the correct Product Category.";
+    }
+    else
+    {
+        if (Request.Method == "POST")
+        {
+            string newProductCategory = Request.Form["newProductCategoryId"];
+
+            string status = ProductCategory_BLL.UpdateProductsUnderCategory(newProductCategory, matchedProducts);
+
+            if (status == ProcessStatusConstants.PRODUCT_CATEGORY_UPDATING_FAIL_CATEGORY_NULL_OR_EMPTY)
+            {
+                infoTextError = ProcessStatusConstants.PRODUCT_CATEGORY_UPDATING_FAIL_CATEGORY_NULL_OR_EMPTY;
+            }
+
+            if (status == ProcessStatusConstants.PRODUCT_CATEGORY_UPDATING_FAIL_NO_PRODUCT)
+            {
+                infoTextError = ProcessStatusConstants.PRODUCT_CATEGORY_UPDATING_FAIL_NO_PRODUCT;
+            }
+
+            if (status == ProcessStatusConstants.PRODUCT_EMPTY_PRODUCT_DATABASE)
+            {
+                infoTextError = ProcessStatusConstants.PRODUCT_EMPTY_PRODUCT_DATABASE;
+            }
+
+            if (status == ProcessStatusConstants.PRODUCT_CATEGORY_UPDATING_SUCCESS)
+            {
+                infoTextApproved = ProcessStatusConstants.PRODUCT_CATEGORY_UPDATING_SUCCESS;
+                Response.Redirect("/product-category");
+            }
+        }
+    }
+
+
+}
+
+<div class="bodyFrame">
+    @if (string.IsNullOrEmpty(userEmail))
+    {
+        <div style="display:flex; align-items: center; justify-content: center; height: 400px">
+            <h2>Login to use this app</h2>
+        </div>
+    }
+    else
+    {
+        if (matchedProducts == null)
+        {
+            <p>No product matched for Product Category '@productCategory'.</p>
+        }
+        else
+        {
+            <form class="input-form" method="post">
+                <div class="inputField new">
+                    <label for="newProductCategory">New Product Category</label>
+                    <input type="text" name="newProductCategoryId" placeholder="new product category here..." />
+                </div>
+
+                <input type="submit" class="action-button" value="Confirm and Update" />
+            </form>
+
+            <h2>Do you want to UPDATE these product under category '@productCategory'?</h2>
+
+            <table>
+                <tr>
+                    <th>ProductID</th>
+                    <th>Product Name</th>
+                    <th>Product Category</th>
+                    <th>Manufacturer</th>
+                    <th>
+                        <p>Manufacturing Date</p>
+                        <p>(mm/dd/yyyy)</p>
+                    </th>
+                    <th>
+                        <p>Expiration Date</p>
+                        <p>(mm/dd/yyyy)</p>
+                    </th>
+                    <th>Price</th>
+                </tr>
+                @foreach(Product p in matchedProducts)
+                {
+                    <tr>
+                        <td>@p.id</td>
+                        <td>@p.name</td>
+                        <td>@p.category</td>
+                        <td>@p.manufacturer</td>
+                        <td>@p.mfgDate.ToShortDateString()</td>
+                        <td>@p.expDate.ToShortDateString()</td>
+                        <td>@p.price</td>
+                    </tr>
+                }
+                
+            </table>
+        }
+    }
+</div>
+
+@section Styling{
+    <style>
+        .bodyFrame {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+        }
+
+        .page-header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .input-form {
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            height: 35%;
+        }
+
+        .inputField.new {
+            font-size: 1.5rem;
+            background-color: forestgreen;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            padding-left: 1rem;
+            display: flex;
+            justify-content: space-between;
+            line-height: 1.5rem;
+            width: 100%;
+        }
+            .inputField.new > label{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                line-height: 4rem;
+            }
+
+            .inputField.new > input {
+                width: 65%;
+                padding-left: 1rem;
+                line-height: 1.5rem;
+                font-weight: bold;
+                border-bottom-right-radius: 8px;
+                border-top-right-radius: 8px;
+            }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:first-child, tr:first-child:hover{
+            background-color: deepskyblue;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #dddddd;
+        }
+
+        .action-button {
+            text-decoration: none;
+            display: inline-block;
+            line-height: 1.5rem;
+            background-color: deepskyblue;
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            font-weight: bold;
+            padding: 8px;
+        }
+    </style>
+}
+
+

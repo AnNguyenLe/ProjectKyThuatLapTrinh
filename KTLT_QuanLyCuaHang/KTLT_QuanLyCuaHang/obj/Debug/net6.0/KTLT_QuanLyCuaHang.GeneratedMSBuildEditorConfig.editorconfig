@@ -16,8 +16,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\KyThuatLapTrinh\ProjectKyThuatLapTrinh\KTLT_QuanLyCuaHang\KTLT_QuanLyCuaHang
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Add-New-Product-Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkLU5ldy1Qcm9kdWN0LUNhdGVnb3J5XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Add-New-Product/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkLU5ldy1Qcm9kdWN0XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Delete-Product-Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRGVsZXRlLVByb2R1Y3QtQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Delete-Product/Index.cshtml]
@@ -54,6 +62,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Update-Product-Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXBkYXRlLVByb2R1Y3QtQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Update-Product/Index.cshtml]
