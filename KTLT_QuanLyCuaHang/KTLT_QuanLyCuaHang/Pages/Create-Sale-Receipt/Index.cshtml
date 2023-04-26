@@ -1,0 +1,98 @@
+﻿@page
+@model KTLT_QuanLyCuaHang.Pages.Create_Sale_Receipt.IndexModel
+
+@using Microsoft.AspNetCore.Http
+@using KTLT_QuanLyCuaHang.Entities
+@using KTLT_QuanLyCuaHang.BusinessLogic_BLL
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Add New Sale Receipt";
+
+    string userEmail = HttpContextAccessor.HttpContext.Session.GetString("userEmail");
+
+    string infoText = string.Empty;
+
+    Product[]? products = Product_BLL.GetProductList();
+
+    if (Request.Method == "POST")
+    {
+        
+
+
+
+    }
+}
+
+<div>
+    @if (string.IsNullOrEmpty(userEmail))
+    {
+        <div style="display:flex; align-items: center; justify-content: center; height: 400px">
+            <h2>Login to use this app</h2>
+        </div>
+    }
+    else
+    {
+        @if (products == null)
+        {
+            <p>Cannot create sale receipt as product instock...</p>
+        }
+        else
+        {
+            <h2 style="padding: 1rem 0">Create New Sale Receipt</h2>
+
+            <form method="POST">
+                <table>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                    @foreach (Product p in products)
+                    {
+                        <tr>
+                            <td>@p.name</td>
+                            <td>@p.price</td>
+                            <td>
+                                <input type="number" name="@p.name quantity" placeholder="Instock: @p.quantity"/>
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+                <input type="submit" value="Create Sale Reicept"/>
+            </form>
+        }
+    }
+
+</div>
+
+@section Styling{
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:first-child, tr:first-child:hover {
+            background-color: deepskyblue;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #dddddd;
+        }
+
+        .create-sale-receipt {
+            background-color: forestgreen;
+        }
+
+    </style>
+}
+

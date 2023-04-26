@@ -250,7 +250,7 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
             int index = 0;
             foreach(Product p in products)
             {
-                if(DateTime.UtcNow >= p.expDate)
+                if(DateTime.Today >= p.expDate)
                 {
                     expiredProducts[index] = p;
                     ++index;
@@ -329,6 +329,49 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
             }
 
             return ExpirationStatus.GOOD;
+        }
+
+        public static Product[]? GetUnexpiredProductList()
+        {
+            Product[]? products = GetProductList();
+
+            if (products == null)
+            {
+                return null;
+            }
+
+            int counter = 0;
+            foreach (Product p in products)
+            {
+                if (DateTime.Today < p.expDate)
+                {
+                    ++counter;
+                }
+            }
+
+            if (counter == 0)
+            {
+                return null;
+            }
+
+            Product[] unexpiredProducts = new Product[counter];
+
+            int index = 0;
+            foreach (Product p in products)
+            {
+                if (DateTime.Today < p.expDate)
+                {
+                    unexpiredProducts[index] = p;
+                    ++index;
+                }
+
+                if (index == counter)
+                {
+                    break;
+                }
+            }
+
+            return unexpiredProducts;
         }
     }
 }

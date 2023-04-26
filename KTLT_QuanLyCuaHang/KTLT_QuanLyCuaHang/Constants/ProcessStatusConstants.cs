@@ -27,5 +27,10 @@
 
         public static readonly string PRODUCT_CATEGORY_DELETING_FAIL_NO_PRODUCT = "Failed deleting product(s) due to list of to be deleted product(s) is empty.";
         public static readonly string PRODUCT_CATEGORY_DELETING_SUCCESS = "Successfully updated products.";
+
+        public static readonly string SALE_RECEIPT_CREATING_FAIL_EXPORTING_PRODUCT_LIST_EMPTY = "Cannot create sale receipt with empty product list.";
+        public static readonly string SALE_RECEIPT_CREATING_FAIL_CONTAINS_NON_EXIST_PRODUCT = "Cannot create sale receipt due to a non-exist product.";
+        public static readonly string SALE_RECEIPT_CREATING_FAIL_INSUFFICIENT_INSTOCK = "Cannot export more than instock quantity. Please check the max quantity of each product again.";
+        public static readonly string SALE_RECEIPT_CREATING_SUCCESSFUL = "Successfull created a sale receipt";
     }
 }
