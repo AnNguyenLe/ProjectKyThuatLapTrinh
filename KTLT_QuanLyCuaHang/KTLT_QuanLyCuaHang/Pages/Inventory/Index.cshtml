@@ -1,13 +1,14 @@
 ﻿@page
-@model IndexModel
+@model KTLT_QuanLyCuaHang.Pages.Inventory.IndexModel
 
 @using Microsoft.AspNetCore.Http
 @using KTLT_QuanLyCuaHang.Entities
 @using KTLT_QuanLyCuaHang.BusinessLogic_BLL
+@using KTLT_QuanLyCuaHang.Constants
 
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Inventory";
 
     string userEmail = HttpContextAccessor.HttpContext.Session.GetString("userEmail");
 
@@ -17,7 +18,7 @@
 
     Product[]? products = Product_BLL.GetProductList();
 
-    if(Request.Method == "POST")
+    if (Request.Method == "POST")
     {
         searchText = Request.Form["searchText"];
         searchProduct = Request.Form["searchProduct"];
@@ -38,12 +39,14 @@
         <div style="display:flex; align-items: center; justify-content: center; height: 400px">
             <h2>Login to use this app</h2>
         </div>
-    } else
+    }
+    else
     {
         @if (string.IsNullOrEmpty(searchProduct))
         {
-            <h2 style="padding: 1rem 0">List of Products</h2>
-        } else
+            <h2 style="padding: 1rem 0">Inventory</h2>
+        }
+        else
         {
             <h2 style="padding: 1rem 0">Matched Products for keyword '@searchText'</h2>
         }
@@ -52,14 +55,15 @@
             @if (string.IsNullOrEmpty(searchProduct))
             {
                 <a href="/add-new-product" class="action-button add-new-product">Add new product</a>
-            } else
+            }
+            else
             {
-                <a href="/" class="action-button add-new-product">Back to all products</a>
+                <a href="/inventory" class="action-button add-new-product">Back to all products</a>
             }
             <div class="search-product-wrapper">
                 <form method="POST">
                     <input class="search-input" type="text" name="searchText" value="@searchText" placeholder="Search any column..." />
-                    <input type="hidden" name="searchProduct" value="searchProduct"/>
+                    <input type="hidden" name="searchProduct" value="searchProduct" />
                     <input class="action-button" type="submit" value="Search" />
                 </form>
             </div>
@@ -72,7 +76,7 @@
         else if (products == null && !string.IsNullOrEmpty(searchProduct))
         {
             <p>No product matched for '@searchText'.</p>
-        } 
+        }
         else
         {
             <table>
@@ -91,9 +95,10 @@
                     </th>
                     <th>Price</th>
                     <th>Quantity</th>
-                    <th>Actions</th>
+                    <th>Expiration Status</th>
                 </tr>
-                @foreach (Product p in products) {
+                @foreach (Product p in products)
+                {
                     <tr>
                         <td>@p.id</td>
                         <td>@p.name</td>
@@ -103,10 +108,24 @@
                         <td>@p.expDate.ToShortDateString()</td>
                         <td>@p.price</td>
                         <td>@p.quantity</td>
-                        <td class="action-buttons-wrapper">
-                            <div><a href="/update-product?prodId=@p.id" class="action-button">Update</a></div>
-                            <div><a href="/delete-product?prodId=@p.id" class="action-button dangerous">Delete</a></div>
-                        </td>
+                        <th>
+                            @if (Product_BLL.CheckProductExpirationStatus(p.expDate) == ExpirationStatus.EXPIRED)
+                            {
+                                <div class="expiration-color-code" style="background-color: red">Expired</div>
+                            }
+                            else if (Product_BLL.CheckProductExpirationStatus(p.expDate) == ExpirationStatus.NEAR_EXPIRATION_7)
+                            {
+                                <div class="expiration-color-code" style="background-color: orangered">Expires Soon</div>
+                            }
+                            else if (Product_BLL.CheckProductExpirationStatus(p.expDate) == ExpirationStatus.NEAR_EXPIRATION_14)
+                            {
+                                <div class="expiration-color-code" style="background-color: gold">Expires within 14 days</div>
+                            }
+                            else
+                            {
+                                <div class="expiration-color-code" style="background-color: green">Looks good!</div>
+                            }
+                        </th>
                     </tr>
                 }
 
@@ -149,16 +168,16 @@
             padding: 8px;
         }
 
-        .action-button:hover{
-            color: white;
-            background-color: blue;
-        }
+            .action-button:hover {
+                color: white;
+                background-color: blue;
+            }
 
-        .action-button.dangerous {
-            background-color: red;
-        }
+            .action-button.dangerous {
+                background-color: red;
+            }
 
-        .add-new-product{
+        .add-new-product {
             background-color: forestgreen;
         }
 
@@ -166,14 +185,14 @@
             background-color: darkred;
         }
 
-        .action-buttons-wrapper{
+        .action-buttons-wrapper {
             display: flex;
             padding: 5px 10px;
             justify-content: space-evenly;
             align-items: center;
         }
 
-        .search-product-wrapper{
+        .search-product-wrapper {
             padding-left: 4rem;
         }
 
@@ -185,5 +204,11 @@
             padding: 8px;
         }
 
+        .expiration-color-code{
+            height: 1.5rem;
+            color: white;
+        }
+
     </style>
 }
+

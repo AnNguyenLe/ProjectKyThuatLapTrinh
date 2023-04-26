@@ -221,5 +221,114 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
 
             return ProcessStatusConstants.PRODUCT_DELETING_SUCCESS;
         }
+
+        public static Product[]? GetExpiredProductList()
+        {
+            Product[]? products = GetProductList();
+
+            if (products == null)
+            {
+                return null;
+            }
+
+            int counter = 0;
+            foreach(Product p in products)
+            {
+                if(DateTime.UtcNow >= p.expDate)
+                {
+                    ++counter;
+                }
+            }
+
+            if(counter == 0)
+            {
+                return null;
+            }
+
+            Product[] expiredProducts = new Product[counter];
+
+            int index = 0;
+            foreach(Product p in products)
+            {
+                if(DateTime.UtcNow >= p.expDate)
+                {
+                    expiredProducts[index] = p;
+                    ++index;
+                }
+
+                if(index == counter)
+                {
+                    break;
+                }
+            }
+
+            return expiredProducts;
+        }
+
+        public static Product[]? SearchExpiredProduct(string rawSearchText)
+        {
+
+            Product[]? products = GetExpiredProductList();
+
+            if (products == null)
+            {
+                return null;
+            }
+
+            string s = string.Join("", rawSearchText.Trim().ToLower().Split());
+
+            int counter = 0;
+            foreach (Product p in products)
+            {
+                bool matchedCondition = p.id.ToLower().Contains(s) || p.name.ToLower().Contains(s) || p.category.ToLower().Contains(s) || p.manufacturer.ToLower().Contains(s) || p.mfgDate.ToString().Contains(s) || p.category.ToLower().Contains(s) || p.manufacturer.ToLower().Contains(s) || p.expDate.ToString().Contains(s) || p.quantity.ToString().Contains(s) || p.price.ToString().Contains(s);
+
+                if (matchedCondition)
+                {
+                    ++counter;
+                }
+            }
+
+            if (counter == 0)
+            {
+                return null;
+            }
+
+            Product[] matchedProducts = new Product[counter];
+
+            int index = 0;
+            foreach (Product p in products)
+            {
+                bool matchedCondition = p.id.ToLower().Contains(s) || p.name.ToLower().Contains(s) || p.category.ToLower().Contains(s) || p.manufacturer.ToLower().Contains(s) || p.mfgDate.ToString().Contains(s) || p.category.ToLower().Contains(s) || p.manufacturer.ToLower().Contains(s) || p.expDate.ToString().Contains(s) || p.quantity.ToString().Contains(s) || p.price.ToString().Contains(s);
+
+                if (matchedCondition)
+                {
+                    matchedProducts[index] = p;
+                    ++index;
+                }
+            }
+
+            return matchedProducts;
+
+        }
+
+        public static string CheckProductExpirationStatus(DateTime expDate)
+        {
+            if (Shared_BLL.CheckProductExpired(expDate))
+            {
+                return ExpirationStatus.EXPIRED;
+            }
+
+            if (Shared_BLL.CheckProductExpiresNext7Days(expDate))
+            {
+                return ExpirationStatus.NEAR_EXPIRATION_7;
+            }
+
+            if (Shared_BLL.CheckProductExpiresNext14Days(expDate))
+            {
+                return ExpirationStatus.NEAR_EXPIRATION_14;
+            }
+
+            return ExpirationStatus.GOOD;
+        }
     }
 }

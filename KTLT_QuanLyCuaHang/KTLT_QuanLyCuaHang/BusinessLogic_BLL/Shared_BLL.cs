@@ -1,4 +1,5 @@
-﻿using KTLT_QuanLyCuaHang.Entities;
+﻿using KTLT_QuanLyCuaHang.Constants;
+using KTLT_QuanLyCuaHang.Entities;
 
 namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
 {
@@ -30,6 +31,20 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
         public static bool isNoE(string str)
         {
             return string.IsNullOrEmpty(str) || str.Trim().ToLower() == "null";
+        }
+
+        public static bool CheckProductExpired(DateTime expDate) {
+            return DateTime.UtcNow.CompareTo(expDate) >= 0;
+        }
+
+        public static bool CheckProductExpiresNext7Days(DateTime expDate)
+        {
+            return DateTime.Today.CompareTo(expDate) <= 0 && DateTime.Today.AddDays(7).CompareTo(expDate) >= 0;
+        }
+
+        public static bool CheckProductExpiresNext14Days(DateTime expDate)
+        {
+            return DateTime.Today.CompareTo(expDate) <= 0 && DateTime.Today.AddDays(14).CompareTo(expDate) >= 0;
         }
     }
 }

@@ -36,8 +36,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Expired-Products/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXhwaXJlZC1Qcm9kdWN0c1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Inventory/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW52ZW50b3J5XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/KyThuatLapTrinh/ProjectKyThuatLapTrinh/KTLT_QuanLyCuaHang/KTLT_QuanLyCuaHang/Pages/Login/Index.cshtml]

@@ -27,6 +27,5 @@
 
         public static readonly string PRODUCT_CATEGORY_DELETING_FAIL_NO_PRODUCT = "Failed deleting product(s) due to list of to be deleted product(s) is empty.";
         public static readonly string PRODUCT_CATEGORY_DELETING_SUCCESS = "Successfully updated products.";
-
     }
 }
