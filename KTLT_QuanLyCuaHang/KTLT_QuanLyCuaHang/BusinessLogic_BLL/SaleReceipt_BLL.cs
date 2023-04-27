@@ -101,13 +101,11 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
         {
             SaleReceipt[]? currentSaleReceipts = GetSaleReceiptList();
 
-            if(currentSaleReceipts != null && currentSaleReceipts.Length != 0)
+            string checkingResultSaleReceiptId = CheckSaleReceiptID(newSaleReceipt.id, currentSaleReceipts);
+
+            if (checkingResultSaleReceiptId != ProcessStatusConstants.SALE_RECEIPT_CREATING_SUCCESSFUL_UNIQUE_ID)
             {
-                bool isUniqueId = CheckSaleReceiptID(newSaleReceipt.id, currentSaleReceipts) == ProcessStatusConstants.SALE_RECEIPT_CREATING_SUCCESSFUL_UNIQUE_ID;
-                if (!isUniqueId)
-                {
-                    return ProcessStatusConstants.SALE_RECEIPT_CREATING_FAIL_ID_NOT_UNIQUE;
-                }
+                return checkingResultSaleReceiptId;
             }
 
             if (currentSaleReceipts == null || currentSaleReceipts.Length == 0)
@@ -129,11 +127,24 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
                 updatedSaleReceipts[i] = currentSaleReceipts[i];
             }
             updatedSaleReceipts[currentSaleReceipts.Length] = newSaleReceipt;
+            SaleReceipt_DAL.SaveSaleReceiptList(updatedSaleReceipts);
             return ProcessStatusConstants.SALE_RECEIPT_CREATING_SUCCESSFUL;
         }
 
-        public static string CreateSaleReceipt(SaleReceipt newSaleReceipt)
+        public static string CreateSaleReceipt(string newSaleReceiptId, Product[] exportingGoods)
         {
+            // Refine exportingGoods to contains no product has quantity equals Zero
+            Product[]? refinedExportingGoods = RefineExportingProductList(exportingGoods);
+            if(refinedExportingGoods == null) {
+                return ProcessStatusConstants.SALE_RECEIPT_CREATING_FAIL_ALL_QUANTITY_ARE_ZEROS;
+            }
+
+            // Map to information into SaleReceipt format
+            SaleReceipt newSaleReceipt = new SaleReceipt();
+            newSaleReceipt.id = newSaleReceiptId;
+            newSaleReceipt.createdDateTimeUTC = DateTime.UtcNow;
+            newSaleReceipt.exportedGoods = refinedExportingGoods;
+
             // Save the newly created sale receipt.
             string creatingProcessStatus = SaveNewlyCreatedSaleReceipt(newSaleReceipt);
 
@@ -191,6 +202,47 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
             }
 
             return products;
+        }
+
+        public static Product[]? RefineExportingProductList(Product[] toBeExportedProducts)
+        {
+            int exportingListLength = toBeExportedProducts.Length;
+            if(toBeExportedProducts == null || exportingListLength == 0) {
+                return null;
+            }
+
+            int noOfZeros = 0;
+            int counter = 0;
+            foreach(Product p in toBeExportedProducts)
+            {
+                if(p.quantity > 0)
+                {
+                    ++counter;
+                }
+                else
+                {
+                    ++noOfZeros;
+                }
+            }
+
+            if(noOfZeros == exportingListLength)
+            {
+                return null;
+            }
+
+            Product[] refinedProducts = new Product[counter];
+
+            int index = 0;
+            for(int i = 0; i < exportingListLength; i++)
+            {
+                Product p = toBeExportedProducts[i];
+                if(p.quantity > 0)
+                {
+                    refinedProducts[index++] = p;
+                }
+            }
+
+            return refinedProducts;
         }
 
     }
