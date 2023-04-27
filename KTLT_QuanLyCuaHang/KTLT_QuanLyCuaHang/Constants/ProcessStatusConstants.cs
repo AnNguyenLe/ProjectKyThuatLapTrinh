@@ -30,7 +30,15 @@
 
         public static readonly string SALE_RECEIPT_CREATING_FAIL_EXPORTING_PRODUCT_LIST_EMPTY = "Cannot create sale receipt with empty product list.";
         public static readonly string SALE_RECEIPT_CREATING_FAIL_CONTAINS_NON_EXIST_PRODUCT = "Cannot create sale receipt due to a non-exist product.";
-        public static readonly string SALE_RECEIPT_CREATING_FAIL_INSUFFICIENT_INSTOCK = "Cannot export more than instock quantity. Please check the max quantity of each product again.";
+        public static readonly string SALE_RECEIPT_CREATING_FAIL_INSUFFICIENT_INSTOCK = "Cannot export more than instock quantity. Please check the max quantity and the exporting quantity of each product again.";
+        public static readonly string SALE_RECEIPT_CREATING_FAIL_ID_EMPTY_OR_NULL = "Sale Receipt cannot be empty or null.";
+        public static readonly string SALE_RECEIPT_CREATING_FAIL_ID_NOT_UNIQUE = "Please choose another Sale Receipt ID. This Sale Receipt ID has been registered.";
+        public static readonly string SALE_RECEIPT_CREATING_SUCCESSFUL_UNIQUE_ID = "This Sale Receipt ID is unique.";
+        public static readonly string SALE_RECEIPT_CREATING_SUCCESSFUL_EXPORTING_PRODUCTS_QUALIFIED = "Exporting Products are qualified.";
+        public static readonly string SALE_RECEIPT_CREATING_QUALIFIED_SALE_RECEIPT = "Sale Receipt is qualified.";
         public static readonly string SALE_RECEIPT_CREATING_SUCCESSFUL = "Successfull created a sale receipt";
+
+        public static readonly string SALE_RECEIPT_CREATING_FAIL_UPDATE_INVENTORY_FAIL = "Error occurs when trying update the inventory. Please check the max quantity and the exporting quantity of each product again.";
+
     }
 }

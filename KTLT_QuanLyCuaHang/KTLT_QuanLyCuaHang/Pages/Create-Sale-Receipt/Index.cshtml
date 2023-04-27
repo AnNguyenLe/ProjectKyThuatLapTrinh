@@ -4,6 +4,7 @@
 @using Microsoft.AspNetCore.Http
 @using KTLT_QuanLyCuaHang.Entities
 @using KTLT_QuanLyCuaHang.BusinessLogic_BLL
+@using KTLT_QuanLyCuaHang.Constants
 
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
@@ -12,15 +13,31 @@
     string userEmail = HttpContextAccessor.HttpContext.Session.GetString("userEmail");
 
     string infoText = string.Empty;
-
-    Product[]? products = Product_BLL.GetProductList();
+    string[]? formKeys = null;
+    int []? formValues = null;
+    Product[]? products = Product_BLL.GetUnexpiredProductList();
 
     if (Request.Method == "POST")
     {
-        
+        if(products != null){
+            int productListLength = products.Length;
 
+            formKeys = new string[productListLength];
+            formValues = new int[productListLength];
 
-
+            for (int i = 0; i < productListLength; i++)
+            {
+            
+                string prodId = products[i].id;
+                formKeys[i] = prodId;
+                string valueContent = Request.Form[prodId];
+                if (Shared_BLL.isNoE(valueContent))
+                {
+                    valueContent = "0";
+                }
+                formValues[i] = int.Parse(valueContent);
+            }
+        }
     }
 }
 
@@ -47,19 +64,45 @@
                         <th>Product Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
+                        <th>Expiration Status</th>
                     </tr>
-                    @foreach (Product p in products)
+                    @for (int i = 0; i < products.Length; i++)
                     {
+                        Product product = products[i];
                         <tr>
-                            <td>@p.name</td>
-                            <td>@p.price</td>
+                            <td>@product.name</td>
+                            <td>@product.price</td>
                             <td>
-                                <input type="number" name="@p.name quantity" placeholder="Instock: @p.quantity"/>
+                                @if(formKeys == null)
+                                {
+                                    <input type="number" name=@product.id placeholder="Instock: @product.quantity"/>
+                                } else
+                                {
+                                    <input type="number" name=@product.id value="@formValues[i]" />
+                                }
                             </td>
+                            <th>
+                                @if (Product_BLL.CheckProductExpirationStatus(product.expDate) == ExpirationStatus.EXPIRED)
+                                {
+                                    <div class="expiration-color-code" style="background-color: red">Expired</div>
+                                }
+                                else if (Product_BLL.CheckProductExpirationStatus(product.expDate) == ExpirationStatus.NEAR_EXPIRATION_7)
+                                {
+                                    <div class="expiration-color-code" style="background-color: orangered">Expires Soon</div>
+                                }
+                                else if (Product_BLL.CheckProductExpirationStatus(product.expDate) == ExpirationStatus.NEAR_EXPIRATION_14)
+                                {
+                                    <div class="expiration-color-code" style="background-color: gold">Expires within 14 days</div>
+                                }
+                                else
+                                {
+                                    <div class="expiration-color-code" style="background-color: green">Looks good!</div>
+                                }
+                            </th>
                         </tr>
                     }
                 </table>
-
+                <p>@infoText</p>
                 <input type="submit" value="Create Sale Reicept"/>
             </form>
         }

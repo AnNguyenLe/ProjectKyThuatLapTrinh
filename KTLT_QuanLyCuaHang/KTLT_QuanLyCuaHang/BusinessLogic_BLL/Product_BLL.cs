@@ -126,11 +126,24 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
 
         }
 
-        public static Product? SearchProductBasedOnID(string productId)
+        public static Product? SearchProductBasedOnID(string productId, ExpirationStatusEnum inProductList = ExpirationStatusEnum.ALL_EXPIRATION_STATUS)
         {
             if(string.IsNullOrEmpty(productId)) return null;
 
-            Product[]? products = GetProductList();
+            Product[]? products;
+
+            switch (inProductList)
+            {
+                case ExpirationStatusEnum.EXPIRED:
+                    products = GetExpiredProductList(); 
+                    break;
+                case ExpirationStatusEnum.UNEXPIRED:
+                    products = GetUnexpiredProductList();
+                    break;
+                default:
+                    products = GetProductList();
+                    break;
+            }
 
             if(products == null) return null;
 
@@ -372,6 +385,35 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
             }
 
             return unexpiredProducts;
+        }
+
+        public static Product? SearchProductBasedOnIDInProviedList(string productId, Product[] products)
+        {
+            if (string.IsNullOrEmpty(productId)) return null;
+
+            if (products == null) return null;
+
+            foreach (Product p in products)
+            {
+                if (p.id == productId)
+                {
+                    return p;
+                }
+            }
+
+            return null;
+        }
+
+        public static int? FindIndexOfProductID(string productId, Product[] products) {
+            for(int i = 0; i < products.Length; i++)
+            {
+                if (products[i].id == productId)
+                {
+                    return i;
+                }
+            }
+
+            return null;
         }
     }
 }
