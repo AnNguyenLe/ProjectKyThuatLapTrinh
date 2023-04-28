@@ -1,6 +1,7 @@
 ﻿using KTLT_QuanLyCuaHang.Entities;
 using KTLT_QuanLyCuaHang.DataAccess_DAL;
 using KTLT_QuanLyCuaHang.Constants;
+using System.Security.Cryptography.X509Certificates;
 
 namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
 {
@@ -57,7 +58,7 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
 
             foreach (Product exportP in toBeExportedProducts)
             {
-                Product? product = Product_BLL.SearchProductBasedOnIDInProviedList(exportP.id, products);
+                Product? product = Product_BLL.SearchProductBasedOnIDInProvidedList(exportP.id, products);
 
                 if (product == null)
                 {
@@ -245,5 +246,120 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
             return refinedProducts;
         }
 
+        public static SaleReceipt[]? SearchSaleReceipt(string rawSearchText)
+        {
+            SaleReceipt[]? saleReceipts = GetSaleReceiptList();
+
+            if (saleReceipts == null)
+            {
+                return null;
+            }
+
+            string str = string.Join("", rawSearchText.Trim().ToLower().Split());
+
+            int counter = 0;
+
+            bool matchedCondition(SaleReceipt s)
+            {
+                return s.id.ToLower().Contains(str) || s.createdDateTimeUTC.ToString().Contains(str);
+            }
+
+            foreach (SaleReceipt s in saleReceipts)
+            {
+                if (matchedCondition(s))
+                {
+                    ++counter;
+                }
+            }
+
+            if (counter == 0)
+            {
+                return null;
+            }
+
+            SaleReceipt[] matchedSaleReceipts = new SaleReceipt[counter];
+
+            int index = 0;
+            foreach (SaleReceipt s in saleReceipts)
+            {
+                if (matchedCondition(s))
+                {
+                    matchedSaleReceipts[index] = s;
+                    ++index;
+                }
+            }
+
+            return matchedSaleReceipts;
+        }
+
+        public static SaleReceipt? SearchSaleReceiptBasedOnID(string saleReceiptId)
+        {
+            SaleReceipt[]? saleReceipts = GetSaleReceiptList();
+
+            if(saleReceipts == null || saleReceipts.Length == 0)
+            {
+                return null;
+            }
+
+            foreach(SaleReceipt s in saleReceipts)
+            {
+                if(s.id == saleReceiptId)
+                {
+                    return s;
+                }
+            }
+
+            return null;
+        }
+
+        public static int? FindIndexOfSaleReceipt(string saleReceiptId) {
+            SaleReceipt[]? saleReceipts = GetSaleReceiptList();
+            for(int i = 0; i < saleReceipts?.Length; i++)
+            {
+                if (saleReceipts[i].id == saleReceiptId)
+                {
+                    return i;
+                }
+            }
+            return null;
+        }
+
+        public static void UpdateSaleReceipt(string saleReceiptId, Product[] exportingGoods)
+        {
+            SaleReceipt[]? saleReceipts = GetSaleReceiptList();
+            if(saleReceipts == null)
+            {
+                return;
+            }
+            int? index = FindIndexOfSaleReceipt(saleReceiptId);
+            if(index == null)
+            {
+                return;
+            }
+            saleReceipts[(int)index].exportedGoods = exportingGoods;
+            saleReceipts[(int)index].lastUpdateTimeUTC = DateTime.UtcNow;
+            SaleReceipt_DAL.SaveSaleReceiptList(saleReceipts);
+        }
+
+        public static void DeleteSaleReceipt(string saleReceiptId)
+        {
+            SaleReceipt[]? saleReceipts = GetSaleReceiptList();
+            if(saleReceipts == null)
+            {
+                return;
+            }
+
+            SaleReceipt[] newSaleReceipts = new SaleReceipt[saleReceipts.Length - 1];
+            int counter = 0;
+            foreach(SaleReceipt s in saleReceipts)
+            {
+                if(s.id != saleReceiptId)
+                {
+                    newSaleReceipts[counter++] = s;
+                }
+            }
+            SaleReceipt_DAL.SaveSaleReceiptList(newSaleReceipts);
+
+        }
     }
 }

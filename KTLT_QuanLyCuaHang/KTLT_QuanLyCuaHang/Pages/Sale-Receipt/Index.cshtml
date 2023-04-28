@@ -1,4 +1,174 @@
 ﻿@page
 @model KTLT_QuanLyCuaHang.Pages.Sale_Receipt.IndexModel
+@using Microsoft.AspNetCore.Http
+@using KTLT_QuanLyCuaHang.Entities
+@using KTLT_QuanLyCuaHang.BusinessLogic_BLL
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
+    ViewData["Title"] = "Sale Receipt";
+
+    string userEmail = HttpContextAccessor.HttpContext.Session.GetString("userEmail");
+
+    string infoText = string.Empty;
+    string searchText = string.Empty;
+    string searchSaleReceipt = string.Empty;
+
+    SaleReceipt[]? saleReceipts = SaleReceipt_BLL.GetSaleReceiptList();
+
+    if (Request.Method == "POST")
+    {
+        searchText = Request.Form["searchText"];
+        searchSaleReceipt = Request.Form["searchSaleReceipt"];
+
+        saleReceipts = SaleReceipt_BLL.SearchSaleReceipt(searchText);
+
+        if (saleReceipts == null)
+        {
+            infoText = $"No product matched '{searchText}'";
+        }
+
+    }
+}
+
+<div>
+    @if (string.IsNullOrEmpty(userEmail))
+    {
+        <div style="display:flex; align-items: center; justify-content: center; height: 400px">
+            <h2>Login to use this app</h2>
+        </div>
+    }
+    else
+    {
+        @if (string.IsNullOrEmpty(searchSaleReceipt))
+        {
+            <h2 style="padding: 1rem 0">List of Sale Receipts</h2>
+        }
+        else
+        {
+            <h2 style="padding: 1rem 0">Matched Sale Receipts for keyword '@searchText'</h2>
+        }
+
+        <div style="padding-bottom: 1.5rem; display: flex; align-items: center">
+            @if (string.IsNullOrEmpty(searchSaleReceipt))
+            {
+                <a href="/create-sale-receipt" class="action-button add-new-product">Add new sale receipt</a>
+            }
+            else
+            {
+                <a href="/sale-receipt" class="action-button add-new-product">Back to all receipts</a>
+            }
+            <div class="search-product-wrapper">
+                <form method="POST">
+                    <input class="search-input" type="text" name="searchText" value="@searchText" placeholder="Search sale receipt..." />
+                    <input type="hidden" name="searchSaleReceipt" value="searchSaleReceipt" />
+                    <input class="action-button" type="submit" value="Search" />
+                </form>
+            </div>
+        </div>
+
+        @if (saleReceipts == null && string.IsNullOrEmpty(searchSaleReceipt))
+        {
+            <p>No Data...</p>
+        }
+        else if (saleReceipts == null && !string.IsNullOrEmpty(searchSaleReceipt))
+        {
+            <p>No sale receipt matched for '@searchText'.</p>
+        }
+        else
+        {
+            <table>
+                <tr>
+                    <th>Sale Receipt ID</th>
+                    <th>Created on</th>
+                    <th>Actions</th>
+                </tr>
+                @foreach (SaleReceipt s in saleReceipts)
+                {
+                    <tr>
+                        <td>@s.id</td>
+                        <td>@s.createdDateTimeUTC</td>
+                        <td class="action-buttons-wrapper">
+                            <div><a href="/update-sale-receipt?saleReceiptId=@s.id" class="action-button">Update</a></div>
+                            <div><a href="/delete-sale-receipt?saleReceiptId=@s.id" class="action-button dangerous">Delete</a></div>
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        }
+    }
+
+</div>
+
+@section Styling{
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:first-child, tr:first-child:hover {
+            background-color: deepskyblue;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #dddddd;
+        }
+
+        .action-button {
+            text-decoration: none;
+            display: inline-block;
+            line-height: 1.5rem;
+            background-color: deepskyblue;
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            padding: 8px;
+        }
+
+            .action-button:hover {
+                color: white;
+                background-color: blue;
+            }
+
+            .action-button.dangerous {
+                background-color: red;
+            }
+
+        .add-new-product {
+            background-color: forestgreen;
+        }
+
+        .action-button.dangerous:hover {
+            background-color: darkred;
+        }
+
+        .action-buttons-wrapper {
+            display: flex;
+            padding: 5px 10px;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .search-product-wrapper {
+            padding-left: 4rem;
+        }
+
+        .search-input {
+            width: 25rem;
+            line-height: 1.5rem;
+            border-radius: 8px;
+            padding-left: 1rem;
+            padding: 8px;
+        }
+
+    </style>
 }

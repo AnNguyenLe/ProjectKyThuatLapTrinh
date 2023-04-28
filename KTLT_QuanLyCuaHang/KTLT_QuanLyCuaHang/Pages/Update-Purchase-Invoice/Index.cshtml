@@ -1,0 +1,184 @@
+﻿@page
+@model KTLT_QuanLyCuaHang.Pages.Update_Purchase_Invoice.IndexModel
+
+@using Microsoft.AspNetCore.Http
+@using KTLT_QuanLyCuaHang.Entities
+@using KTLT_QuanLyCuaHang.BusinessLogic_BLL
+@using KTLT_QuanLyCuaHang.Constants
+@using Newtonsoft.Json
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Update Purchase Invoice";
+
+    string userEmail = HttpContextAccessor.HttpContext.Session.GetString("userEmail");
+
+    string infoText = string.Empty;
+    string purchaseInvoiceId = Request.Query["purchaseInvoiceId"];
+
+    Product[]? products = PurchaseInvoice_BLL.SearchPurchaseInvoiceBasedOnID(purchaseInvoiceId).Value.importedGoods;
+    int productListLength = products.Length;
+
+    string[]? formKeys = new string[productListLength];
+    int[]? formValues = new int[productListLength];
+
+    for (int i = 0; i < productListLength; i++)
+    {
+        formKeys[i] = products[i].id;
+        formValues[i] = products[i].quantity;
+    }
+
+    if (Request.Method == "POST")
+    {
+        if (products != null)
+        {
+            string jsonContent = JsonConvert.SerializeObject(products);
+            Product[] importingGoods = JsonConvert.DeserializeObject<Product[]>(jsonContent);
+
+            for (int i = 0; i < productListLength; i++)
+            {
+                string prodId = products[i].id;
+                formKeys[i] = prodId;
+                string valueContent = Request.Form[prodId];
+                if (Shared_BLL.isNoE(valueContent))
+                {
+                    valueContent = "0";
+                }
+                int value = int.Parse(valueContent);
+                formValues[i] = value;
+                importingGoods[i].quantity = value;
+            }
+
+            PurchaseInvoice_BLL.UpdatePurchaseInvoice(purchaseInvoiceId, importingGoods);
+
+            Response.Redirect("/purchase-invoice");
+        }
+    }
+}
+
+<div>
+    @if (string.IsNullOrEmpty(userEmail))
+    {
+        <div style="display:flex; align-items: center; justify-content: center; height: 400px">
+            <h2>Login to use this app</h2>
+        </div>
+    }
+    else
+    {
+        <h2 style="padding: 1rem 0">Update Purchase Invoice @purchaseInvoiceId</h2>
+
+        <form method="POST">
+            <table>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                @for (int i = 0; i < products.Length; i++)
+                {
+                    Product product = products[i];
+                    <tr>
+                        <td>@product.name</td>
+                        <td>@product.price</td>
+                        <td>
+                            <input type="number" name=@product.id value="@formValues[i]" />
+                        </td>
+                    </tr>
+                }
+            </table>
+
+            <p class="info-text">@infoText</p>
+
+            <div class="action-button-wrapper">
+                <input type="submit" value="Confirm and Update" class="action-button dangerous" />
+                <a href="/purchase-invoice" class="action-button">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    }
+
+</div>
+
+@section Styling{
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:first-child, tr:first-child:hover {
+            background-color: deepskyblue;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #dddddd;
+        }
+
+        .create-sale-receipt {
+            background-color: forestgreen;
+        }
+
+        .inputField.new {
+            font-size: 1.5rem;
+            background-color: forestgreen;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            padding-left: 1rem;
+            width: 60%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .inputField.new > input {
+                width: 60%;
+                padding-left: 1rem;
+                line-height: 1.5rem;
+                font-weight: bold;
+                border-radius: 8px;
+            }
+
+        .info-text {
+            margin: 2rem 0;
+            color: red;
+            font-weight: bold;
+        }
+
+        .action-button-wrapper {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .action-button {
+            text-decoration: none;
+            display: inline-block;
+            line-height: 1.5rem;
+            background-color: deepskyblue;
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            font-weight: bold;
+            padding: 8px;
+            width: 15rem;
+        }
+
+        a.action-button {
+            text-decoration: none;
+            color: white
+        }
+
+        .action-button.dangerous {
+            background-color: red;
+        }
+
+    </style>
+}

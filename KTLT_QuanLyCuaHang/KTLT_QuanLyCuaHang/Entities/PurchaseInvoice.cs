@@ -1,16 +1,16 @@
 ﻿namespace KTLT_QuanLyCuaHang.Entities
 {
-    public struct SaleReceiptList
+    public struct PurchaseInvoiceList
     {
         public int total;
-        public SaleReceipt[] saleReceipts;
+        public PurchaseInvoice[] purchaseInvoices;
     }
 
-    public struct SaleReceipt
+    public struct PurchaseInvoice
     {
         public string id;
         public DateTime createdDateTimeUTC;
-        public Product[] exportedGoods;
+        public Product[] importedGoods;
         public DateTime? lastUpdateTimeUTC;
     }
 }

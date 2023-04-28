@@ -40,5 +40,18 @@
         public static readonly string SALE_RECEIPT_CREATING_FAIL_ALL_QUANTITY_ARE_ZEROS = "Cannot issue a Sale Receipt that quantity is 0 for all listed products.";
         public static readonly string SALE_RECEIPT_CREATING_FAIL_UPDATE_INVENTORY_FAIL = "Error occurs when trying update the inventory. Please check the max quantity and the exporting quantity of each product again.";
 
+
+        public static readonly string PURCHASE_INVOICE_CREATING_FAIL_IMPORTING_PRODUCT_LIST_EMPTY = "Cannot create purchase invoice with empty product list.";
+        public static readonly string PURCHASE_INVOICE_CREATING_FAIL_CONTAINS_NON_EXIST_PRODUCT = "Cannot create purchase invoice due to a non-exist product.";
+        public static readonly string PURCHASE_INVOICE_CREATING_FAIL_PRODUCTS_QUANTITY_MUST_POSITIVE = "Cannot import NEGATIVE quantity. Please check the importing quantity of each product again.";
+        public static readonly string PURCHASE_INVOICE_CREATING_FAIL_ID_EMPTY_OR_NULL = "Purchase Invoice ID cannot be empty or null.";
+        public static readonly string PURCHASE_INVOICE_CREATING_FAIL_ID_NOT_UNIQUE = "Please choose another Purchase Invoice ID. This Purchase Invoice ID has been registered.";
+        public static readonly string PURCHASE_INVOICE_CREATING_SUCCESSFUL_UNIQUE_ID = "This Purchase Invoice ID is unique.";
+        public static readonly string PURCHASE_INVOICE_CREATING_SUCCESSFUL_IMPORTING_PRODUCTS_QUALIFIED = "Importing Products are qualified.";
+        public static readonly string PURCHASE_INVOICE_CREATING_QUALIFIED_PURCHASE_INVOICE = "Purchase Invoice is qualified.";
+        public static readonly string PURCHASE_INVOICE_CREATING_SUCCESSFUL = "Successfull created a purchase invoice";
+        public static readonly string PURCHASE_INVOICE_CREATING_FAIL_ALL_QUANTITY_ARE_ZEROS = "Cannot issue a Purchase Invoice that quantity is 0 for all listed products.";
+        public static readonly string PURCHASE_INVOICE_CREATING_FAIL_UPDATE_INVENTORY_FAIL = "Error occurs when trying update the inventory. Please check the importing quantity of each product again.";
+
     }
 }

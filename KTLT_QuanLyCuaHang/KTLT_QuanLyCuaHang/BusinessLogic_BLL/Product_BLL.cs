@@ -387,7 +387,7 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
             return unexpiredProducts;
         }
 
-        public static Product? SearchProductBasedOnIDInProviedList(string productId, Product[] products)
+        public static Product? SearchProductBasedOnIDInProvidedList(string productId, Product[] products)
         {
             if (string.IsNullOrEmpty(productId)) return null;
 
@@ -415,5 +415,6 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
 
             return null;
         }
+
     }
 }

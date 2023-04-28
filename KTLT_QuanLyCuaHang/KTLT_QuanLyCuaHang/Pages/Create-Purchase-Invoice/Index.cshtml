@@ -1,5 +1,5 @@
 ﻿@page
-@model KTLT_QuanLyCuaHang.Pages.Create_Sale_Receipt.IndexModel
+@model KTLT_QuanLyCuaHang.Pages.Create_Purchase_Invoice.IndexModel
 
 @using Microsoft.AspNetCore.Http
 @using KTLT_QuanLyCuaHang.Entities
@@ -9,24 +9,25 @@
 
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
-    ViewData["Title"] = "Add New Sale Receipt";
+    ViewData["Title"] = "Add New Purchase Invoice";
 
     string userEmail = HttpContextAccessor.HttpContext.Session.GetString("userEmail");
 
     string infoText = string.Empty;
-    string saleReceiptId = string.Empty;
+    string purchaseInvoiceId = string.Empty;
     string[]? formKeys = null;
-    int []? formValues = null;
-    Product[]? products = Product_BLL.GetUnexpiredProductList();
+    int[]? formValues = null;
+    Product[]? products = Product_BLL.GetProductList();
 
     if (Request.Method == "POST")
     {
-        if(products != null){
-            saleReceiptId = Request.Form["saleReceiptId"];
+        if (products != null)
+        {
+            purchaseInvoiceId = Request.Form["purchaseInvoiceId"];
             int productListLength = products.Length;
 
             string jsonContent = JsonConvert.SerializeObject(products);
-            Product[] exportingGoods = JsonConvert.DeserializeObject<Product[]>(jsonContent);
+            Product[] importingGoods = JsonConvert.DeserializeObject<Product[]>(jsonContent);
 
             formKeys = new string[productListLength];
             formValues = new int[productListLength];
@@ -42,16 +43,14 @@
                 }
                 int value = int.Parse(valueContent);
                 formValues[i] = value;
-                exportingGoods[i].quantity = value;
-
-                
+                importingGoods[i].quantity = value;
             }
 
-            infoText = SaleReceipt_BLL.CreateSaleReceipt(saleReceiptId, exportingGoods);
+            infoText = PurchaseInvoice_BLL.CreatePurchaseInvoice(purchaseInvoiceId, importingGoods);
 
-            if(infoText == ProcessStatusConstants.SALE_RECEIPT_CREATING_SUCCESSFUL)
+            if (infoText == ProcessStatusConstants.PURCHASE_INVOICE_CREATING_SUCCESSFUL)
             {
-                Response.Redirect("/sale-receipt");
+                Response.Redirect("/purchase-invoice");
             }
         }
     }
@@ -68,16 +67,16 @@
     {
         @if (products == null)
         {
-            <p>Cannot create sale receipt as there is no product instock...</p>
+            <p>Cannot create purchase invoice as there is no product instock...</p>
         }
         else
         {
-            <h2 style="padding: 1rem 0">Create New Sale Receipt</h2>
+            <h2 style="padding: 1rem 0">Create New Purchase Invoice</h2>
 
             <form method="POST">
                 <div class="inputField new">
-                    <label for="saleReceiptId">Enter New Sale Receipt ID ...</label>
-                    <input type="text" name="saleReceiptId" value="@saleReceiptId" />
+                    <label for="purchaseInvoiceId">Enter New Purchase Invoice ID ...</label>
+                    <input type="text" name="purchaseInvoiceId" value="@purchaseInvoiceId" />
                 </div>
 
                 <h3 style="padding: 1rem 0; color: slategrey">And a product that is classified under this new category...</h3>
@@ -86,7 +85,6 @@
                         <th>Product Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
-                        <th>Expiration Status</th>
                     </tr>
                     @for (int i = 0; i < products.Length; i++)
                     {
@@ -95,38 +93,22 @@
                             <td>@product.name</td>
                             <td>@product.price</td>
                             <td>
-                                @if(formKeys == null)
+                                @if (formKeys == null)
                                 {
-                                    <input type="number" name=@product.id placeholder="Instock: @product.quantity"/>
-                                } else
-                                {
-                                    if(formValues[i] <= product.quantity)
-                                    {
-                                        <input type="number" name=@product.id value="@formValues[i]" placeholder="Instock: @product.quantity" />
-                                    } else
-                                    {
-                                        <input type="number" style="background-color: red" name=@product.id value="@formValues[i]" placeholder="Instock: @product.quantity" />
-                                    }
-                                }
-                            </td>
-                            <th>
-                                @if (Product_BLL.CheckProductExpirationStatus(product.expDate) == ExpirationStatus.EXPIRED)
-                                {
-                                    <div class="expiration-color-code" style="background-color: red">Expired</div>
-                                }
-                                else if (Product_BLL.CheckProductExpirationStatus(product.expDate) == ExpirationStatus.NEAR_EXPIRATION_7)
-                                {
-                                    <div class="expiration-color-code" style="background-color: orangered">Expires Soon</div>
-                                }
-                                else if (Product_BLL.CheckProductExpirationStatus(product.expDate) == ExpirationStatus.NEAR_EXPIRATION_14)
-                                {
-                                    <div class="expiration-color-code" style="background-color: gold">Expires within 14 days</div>
+                                    <input type="number" name=@product.id />
                                 }
                                 else
                                 {
-                                    <div class="expiration-color-code" style="background-color: green">Looks good!</div>
+                                    if (formValues[i] > 0)
+                                    {
+                                        <input type="number" name=@product.id value="@formValues[i]" />
+                                    }
+                                    else
+                                    {
+                                        <input type="number" style="background-color: red" name=@product.id value="@formValues[i]" />
+                                    }
                                 }
-                            </th>
+                            </td>
                         </tr>
                     }
                 </table>
@@ -134,8 +116,8 @@
                 <p class="info-text">@infoText</p>
 
                 <div class="action-button-wrapper">
-                    <input type="submit" value="Create Sale Receipt" class="action-button" />
-                    <a href="/sale-receipt" class="action-button dangerous">
+                    <input type="submit" value="Create Purchase Invoice" class="action-button" />
+                    <a href="/purchase-invoice" class="action-button dangerous">
                         Cancel
                     </a>
                 </div>
@@ -191,7 +173,7 @@
                 border-radius: 8px;
             }
 
-        .info-text{
+        .info-text {
             margin: 2rem 0;
             color: red;
             font-weight: bold;
