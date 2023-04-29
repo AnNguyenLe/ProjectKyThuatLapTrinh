@@ -1,0 +1,118 @@
+﻿@page
+@model KTLT_QuanLyCuaHang.Pages.Sale_Receipt.Sale_Receipt_Detail.IndexModel
+
+@using Microsoft.AspNetCore.Http
+@using KTLT_QuanLyCuaHang.Entities
+@using KTLT_QuanLyCuaHang.BusinessLogic_BLL
+@using KTLT_QuanLyCuaHang.Constants
+@using Newtonsoft.Json
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Sale Receipt Detail";
+
+    string userEmail = HttpContextAccessor.HttpContext.Session.GetString("userEmail");
+
+    string infoText = string.Empty;
+    string saleReceiptId = Request.Query["saleReceiptId"];
+
+    Product[]? products = SaleReceipt_BLL.SearchSaleReceiptBasedOnID(saleReceiptId).Value.exportedGoods;
+
+    if (Request.Method == "POST")
+    {
+        Response.Redirect("/sale-receipt");
+    }
+}
+
+<div>
+    @if (string.IsNullOrEmpty(userEmail))
+    {
+            <div style="display:flex; align-items: center; justify-content: center; height: 400px">
+                <h2>Login to use this app</h2>
+            </div>
+    }
+    else
+    {
+            <h2 style="padding: 1rem 0">Sale Receipt Detail @saleReceiptId</h2>
+
+            <div class="action-button-wrapper">
+                <a href="/sale-receipt" class="action-button">
+                    Return to all sale receipts
+                </a>
+            </div>
+
+            <form method="POST">
+                <table>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </tr>
+                @for (int i = 0; i < products.Length; i++)
+                {
+                    Product product = products[i];
+                                    <tr>
+                                        <td>@product.name</td>
+                                        <td>@product.price</td>
+                                        <td>
+                            @product.quantity
+                                        </td>
+                                    </tr>
+                }
+                </table>
+
+                <p class="info-text">@infoText</p>
+
+
+            </form>
+    }
+
+</div>
+
+@section Styling{
+                <style>
+                    table {
+                        border-collapse: collapse;
+                        width: 100%;
+                    }
+
+                    td, th {
+                        border: 1px solid #dddddd;
+                        text-align: center;
+                        padding: 8px;
+                    }
+
+                    tr:first-child, tr:first-child:hover {
+                        background-color: deepskyblue;
+                        color: white;
+                    }
+
+                    tr:hover {
+                        background-color: #dddddd;
+                    }
+
+                    .action-button-wrapper {
+                        padding: 0 0 2rem 0;
+                    }
+
+                    .action-button {
+                        text-decoration: none;
+                        display: inline-block;
+                        line-height: 1.5rem;
+                        background-color: green;
+                        color: white;
+                        text-align: center;
+                        border-radius: 4px;
+                        font-weight: bold;
+                        padding: 8px;
+                        width: 20rem;
+                    }
+
+                    a.action-button {
+                        text-decoration: none;
+                        color: white
+                    }
+
+                </style>
+}
+

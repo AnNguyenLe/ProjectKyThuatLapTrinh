@@ -81,6 +81,7 @@
                 <tr>
                     <th>Sale Receipt ID</th>
                     <th>Created on</th>
+                    <th>Detail</th>
                     <th>Actions</th>
                 </tr>
                 @foreach (PurchaseInvoice p in purchaseInvoices)
@@ -88,6 +89,9 @@
                     <tr>
                         <td>@p.id</td>
                         <td>@p.createdDateTimeUTC</td>
+                        <td>
+                            <div><a href="/purchase-invoice/purchase-invoice-detail?purchaseInvoiceId=@p.id" class="action-button">View Detail</a></div>
+                        </td>
                         <td class="action-buttons-wrapper">
                             <div><a href="/update-purchase-invoice?purchaseInvoiceId=@p.id" class="action-button">Update</a></div>
                             <div><a href="/delete-purchase-invoice?purchaseInvoiceId=@p.id" class="action-button dangerous">Delete</a></div>

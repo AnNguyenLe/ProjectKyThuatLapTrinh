@@ -81,6 +81,7 @@
                 <tr>
                     <th>Sale Receipt ID</th>
                     <th>Created on</th>
+                    <th>Detail</th>
                     <th>Actions</th>
                 </tr>
                 @foreach (SaleReceipt s in saleReceipts)
@@ -88,6 +89,9 @@
                     <tr>
                         <td>@s.id</td>
                         <td>@s.createdDateTimeUTC</td>
+                        <td>
+                            <div><a href="/sale-receipt/sale-receipt-detail?saleReceiptId=@s.id" class="action-button">View Detail</a></div>
+                        </td>
                         <td class="action-buttons-wrapper">
                             <div><a href="/update-sale-receipt?saleReceiptId=@s.id" class="action-button">Update</a></div>
                             <div><a href="/delete-sale-receipt?saleReceiptId=@s.id" class="action-button dangerous">Delete</a></div>
