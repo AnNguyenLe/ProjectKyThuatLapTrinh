@@ -308,21 +308,91 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
             return null;
         }
 
-        public static void UpdatePurchaseInvoice(string purchaseInvoiceId, Product[] importingGoods)
+        public static string UpdatePurchaseInvoice(string purchaseInvoiceId, Product[] importingGoods)
         {
             PurchaseInvoice[]? purchaseInvoices = GetPurchaseInvoiceList();
             if (purchaseInvoices == null)
             {
-                return;
+                return ProcessStatusConstants.PURCHASE_INVOICE_UPDATING_EMPTY_LIST; ;
             }
             int? index = FindIndexOfPurchaseInvoice(purchaseInvoiceId);
             if (index == null)
             {
-                return;
+                return ProcessStatusConstants.PURCHASE_INVOICE_UPDATING_FAIL_CONTAINS_NON_EXIST_PRODUCT;
             }
+
+            // Update Inventory...
+            Product[] prevImportingGoods = purchaseInvoices[(int)index].importedGoods;
+            string resultInventoryUpdating = UpdateInventoryBeforeUpdatePurchaseInvoice(prevImportingGoods, importingGoods);
+            if (resultInventoryUpdating != ProcessStatusConstants.PURCHASE_INVOICE_UPDATING_SUCCESSFUL_UPDATING_INVENTORY)
+            {
+                return resultInventoryUpdating;
+            }
+
             purchaseInvoices[(int)index].importedGoods = importingGoods;
             purchaseInvoices[(int)index].lastUpdateTimeUTC = DateTime.UtcNow;
             PurchaseInvoice_DAL.SavePurchaseInvoiceList(purchaseInvoices);
+
+            return ProcessStatusConstants.PURCHASE_INVOICE_UPDATING_SUCCESSFUL;
+        }
+
+        public static string UpdateInventoryBeforeUpdatePurchaseInvoice(Product[] prevProds, Product[] updatedProds)
+        {
+            Product[]? inventory = Product_BLL.GetProductList();
+            if (inventory == null)
+            {
+                return ProcessStatusConstants.PRODUCT_EMPTY_PRODUCT_DATABASE;
+            }
+
+            int[] prevValues = new int[prevProds.Length];
+            int[] updatedValues = new int[updatedProds.Length];
+            for (int i = 0; i < prevProds.Length; i++)
+            {
+                prevValues[i] = prevProds[i].quantity;
+                if (updatedProds[i].quantity < 0)
+                {
+                    return $"Product quantity must be a positive number. Please check the quantity of ProductID {updatedProds[i].id} - {updatedProds[i].name} again.";
+                }
+                updatedValues[i] = updatedProds[i].quantity;
+            }
+
+            int[] changedValues = Shared_BLL.CalculateValueChanges(prevValues, updatedValues);
+
+            string[] prodIds = new string[prevProds.Length];
+            for (int i = 0; i < prevProds.Length; i++)
+            {
+                prodIds[i] = prevProds[i].id;
+            }
+
+            int actualChangeCounter = 0;
+            for (int i = 0; i < prodIds.Length; i++)
+            {
+                int? toBeUpdatedProdIndex = Product_BLL.FindIndexOfProductID(prodIds[i], inventory);
+                if (toBeUpdatedProdIndex == null)
+                {
+                    return $"{ProcessStatusConstants.PURCHASE_INVOICE_UPDATING_FAIL_CONTAINS_NON_EXIST_PRODUCT} ProductID {prodIds[i]}";
+                }
+
+                Product toBeUpdatedProd = inventory[toBeUpdatedProdIndex.Value];
+
+                int toBeUpdatedInstockQuantity = toBeUpdatedProd.quantity + changedValues[i];
+
+                if (toBeUpdatedInstockQuantity < 0 || toBeUpdatedProd.quantity < 0)
+                {
+                    return $"Min value for ProductID {prodIds[i]} is {prevValues[i] - toBeUpdatedProd.quantity}.";
+                }
+
+                inventory[(int)toBeUpdatedProdIndex].quantity = toBeUpdatedInstockQuantity;
+                ++actualChangeCounter;
+
+                if (actualChangeCounter == prodIds.Length)
+                {
+                    break;
+                }
+            }
+
+            Product_DAL.SaveProductList(inventory);
+            return ProcessStatusConstants.PURCHASE_INVOICE_UPDATING_SUCCESSFUL_UPDATING_INVENTORY;
         }
 
         public static void DeletePurchaseInvoice(string purchaseInvoiceId)

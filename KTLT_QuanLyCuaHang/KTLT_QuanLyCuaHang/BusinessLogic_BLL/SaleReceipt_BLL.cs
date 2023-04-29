@@ -346,6 +346,7 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
             {
                 return resultInventoryUpdating;
             }
+
             saleReceipts[(int)index].exportedGoods = exportingGoods;
             saleReceipts[(int)index].lastUpdateTimeUTC = DateTime.UtcNow;
             SaleReceipt_DAL.SaveSaleReceiptList(saleReceipts);
@@ -367,7 +368,7 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
                 prevValues[i] = prevProds[i].quantity;
                 if(updatedProds[i].quantity < 0)
                 {
-                    return $"Product quantity must be a positive number. Please check the quantity of ProductID {updatedProds[i].id} again.";
+                    return $"Product quantity must be a positive number. Please check the quantity of ProductID {updatedProds[i].id} - {updatedProds[i].name} again.";
                 }
                 updatedValues[i] = updatedProds[i].quantity;
             }

@@ -58,5 +58,9 @@
         public static readonly string PURCHASE_INVOICE_CREATING_FAIL_ALL_QUANTITY_ARE_ZEROS = "Cannot issue a Purchase Invoice that quantity is 0 for all listed products.";
         public static readonly string PURCHASE_INVOICE_CREATING_FAIL_UPDATE_INVENTORY_FAIL = "Error occurs when trying update the inventory. Please check the importing quantity of each product again.";
 
+        public static readonly string PURCHASE_INVOICE_UPDATING_FAIL_CONTAINS_NON_EXIST_PRODUCT = "Cannot update purchase invoice due to a non-exist product";
+        public static readonly string PURCHASE_INVOICE_UPDATING_EMPTY_LIST = "Cannot update purchase invoice due to purchase invoice list is empty.";
+        public static readonly string PURCHASE_INVOICE_UPDATING_SUCCESSFUL_UPDATING_INVENTORY = "Successfully update inventory before updating purchase invoice";
+        public static readonly string PURCHASE_INVOICE_UPDATING_SUCCESSFUL = "Successfully update purchase invoice";
     }
 }

@@ -49,9 +49,16 @@
                 importingGoods[i].quantity = value;
             }
 
-            PurchaseInvoice_BLL.UpdatePurchaseInvoice(purchaseInvoiceId, importingGoods);
+            string updatingResult = PurchaseInvoice_BLL.UpdatePurchaseInvoice(purchaseInvoiceId, importingGoods);
 
-            Response.Redirect("/purchase-invoice");
+            if (updatingResult != ProcessStatusConstants.PURCHASE_INVOICE_UPDATING_SUCCESSFUL)
+            {
+                infoText = updatingResult;
+            }
+            else
+            {
+                Response.Redirect("/purchase-invoice");
+            }
         }
     }
 }
