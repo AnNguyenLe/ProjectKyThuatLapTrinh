@@ -324,21 +324,88 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
             return null;
         }
 
-        public static void UpdateSaleReceipt(string saleReceiptId, Product[] exportingGoods)
+        public static string UpdateSaleReceipt(string saleReceiptId, Product[] exportingGoods)
         {
             SaleReceipt[]? saleReceipts = GetSaleReceiptList();
             if(saleReceipts == null)
             {
-                return;
+                return ProcessStatusConstants.SALE_RECEIPT_UPDATING_EMPTY_LIST;
             }
+
             int? index = FindIndexOfSaleReceipt(saleReceiptId);
+
             if(index == null)
             {
-                return;
+                return ProcessStatusConstants.SALE_RECEIPT_UPDATING_FAIL_CONTAINS_NON_EXIST_PRODUCT;
+            }
+
+            // Update inventory
+            Product[] prevExportingGoods = saleReceipts[(int)index].exportedGoods;
+            string resultInventoryUpdating = UpdateInventoryBeforeUpdateSaleReceipt(prevExportingGoods, exportingGoods);
+            if(resultInventoryUpdating != ProcessStatusConstants.SALE_RECEIPT_UPDATING_SUCCESSFUL_UPDATING_INVENTORY)
+            {
+                return resultInventoryUpdating;
             }
             saleReceipts[(int)index].exportedGoods = exportingGoods;
             saleReceipts[(int)index].lastUpdateTimeUTC = DateTime.UtcNow;
             SaleReceipt_DAL.SaveSaleReceiptList(saleReceipts);
+            return ProcessStatusConstants.SALE_RECEIPT_UPDATING_SUCCESSFUL;
+        }
+
+        public static string UpdateInventoryBeforeUpdateSaleReceipt(Product[] prevProds, Product[] updatedProds)
+        {
+            Product[]? inventory = Product_BLL.GetProductList();
+            if(inventory== null)
+            {
+                return ProcessStatusConstants.PRODUCT_EMPTY_PRODUCT_DATABASE;
+            }
+
+            int[] prevValues = new int[prevProds.Length];
+            int[] updatedValues = new int[updatedProds.Length];
+            for(int i = 0; i < prevProds.Length; i++)
+            {
+                prevValues[i] = prevProds[i].quantity;
+                if(updatedProds[i].quantity < 0)
+                {
+                    return $"Product quantity must be a positive number. Please check the quantity of ProductID {updatedProds[i].id} again.";
+                }
+                updatedValues[i] = updatedProds[i].quantity;
+            }
+            
+            int[] changedValues = Shared_BLL.CalculateValueChanges(prevValues, updatedValues);
+
+            string[] prodIds = new string[prevProds.Length];
+            for(int i = 0; i < prevProds.Length; i++) {
+                prodIds[i] = prevProds[i].id;
+            }
+
+            int actualChangeCounter = 0;
+            for(int i = 0; i < prodIds.Length; i++)
+            {
+                int? toBeUpdatedProdIndex = Product_BLL.FindIndexOfProductID(prodIds[i], inventory);
+                if(toBeUpdatedProdIndex == null) {
+                    return $"{ProcessStatusConstants.SALE_RECEIPT_UPDATING_FAIL_CONTAINS_NON_EXIST_PRODUCT} ProductID {prodIds[i]}";
+                }
+
+                Product toBeUpdatedProd = inventory[toBeUpdatedProdIndex.Value];
+
+                int toBeUpdatedInstockQuantity = toBeUpdatedProd.quantity - changedValues[i];
+
+                if(toBeUpdatedInstockQuantity < 0 || toBeUpdatedProd.quantity < 0) {
+                    return $"Max value for ProductID {prodIds[i]} is {toBeUpdatedProd.quantity + prevValues[i]}.";
+                }
+
+                inventory[(int)toBeUpdatedProdIndex].quantity = toBeUpdatedInstockQuantity;
+                ++actualChangeCounter;
+
+                if(actualChangeCounter == prodIds.Length)
+                {
+                    break;
+                }
+            }
+
+            Product_DAL.SaveProductList(inventory);
+            return ProcessStatusConstants.SALE_RECEIPT_UPDATING_SUCCESSFUL_UPDATING_INVENTORY;
         }
 
         public static void DeleteSaleReceipt(string saleReceiptId)

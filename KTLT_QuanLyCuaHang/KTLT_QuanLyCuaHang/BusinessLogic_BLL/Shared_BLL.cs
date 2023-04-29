@@ -94,5 +94,15 @@ namespace KTLT_QuanLyCuaHang.BusinessLogic_BLL
             }
             return queryValues;
         }
+
+        public static int[] CalculateValueChanges(int[] prevValues, int[] currentValues)
+        {
+            int[] changedValues = new int[prevValues.Length]; 
+            for(int i = 0; i < prevValues.Length; i++)
+            {
+                changedValues[i] = currentValues[i] - prevValues[i];
+            }
+            return changedValues;
+        }
     }
 }

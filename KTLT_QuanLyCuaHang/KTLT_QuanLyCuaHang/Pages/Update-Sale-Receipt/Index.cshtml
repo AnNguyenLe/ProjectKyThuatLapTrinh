@@ -49,9 +49,15 @@
                 exportingGoods[i].quantity = value;
             }
 
-            SaleReceipt_BLL.UpdateSaleReceipt(saleReceiptId, exportingGoods);
+            string updatingResult = SaleReceipt_BLL.UpdateSaleReceipt(saleReceiptId, exportingGoods);
 
-            Response.Redirect("/sale-receipt");
+            if(updatingResult != ProcessStatusConstants.SALE_RECEIPT_UPDATING_SUCCESSFUL)
+            {
+                infoText = updatingResult;
+            }else
+            {
+                Response.Redirect("/sale-receipt");
+            }
         }
     }
 }

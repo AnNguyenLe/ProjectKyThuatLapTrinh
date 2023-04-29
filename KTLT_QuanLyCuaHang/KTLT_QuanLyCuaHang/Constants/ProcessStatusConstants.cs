@@ -40,6 +40,11 @@
         public static readonly string SALE_RECEIPT_CREATING_FAIL_ALL_QUANTITY_ARE_ZEROS = "Cannot issue a Sale Receipt that quantity is 0 for all listed products.";
         public static readonly string SALE_RECEIPT_CREATING_FAIL_UPDATE_INVENTORY_FAIL = "Error occurs when trying update the inventory. Please check the max quantity and the exporting quantity of each product again.";
 
+        public static readonly string SALE_RECEIPT_UPDATING_FAIL_CONTAINS_NON_EXIST_PRODUCT = "Cannot update sale receipt due to a non-exist product";
+        public static readonly string SALE_RECEIPT_UPDATING_EMPTY_LIST = "Cannot update sale receipt due to sale receipt list is empty.";
+        public static readonly string SALE_RECEIPT_UPDATING_SUCCESSFUL_UPDATING_INVENTORY = "Successfully update inventory before updating sale receipt";
+        public static readonly string SALE_RECEIPT_UPDATING_SUCCESSFUL = "Successfully update sale receipt";
+
 
         public static readonly string PURCHASE_INVOICE_CREATING_FAIL_IMPORTING_PRODUCT_LIST_EMPTY = "Cannot create purchase invoice with empty product list.";
         public static readonly string PURCHASE_INVOICE_CREATING_FAIL_CONTAINS_NON_EXIST_PRODUCT = "Cannot create purchase invoice due to a non-exist product.";
